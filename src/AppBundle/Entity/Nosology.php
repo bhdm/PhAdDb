@@ -38,6 +38,20 @@ class Nosology
      */
     private $publications;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Magazine", mappedBy="nosologies")
+     */
+    private $magazines;
+
+    public function __construct()
+    {
+        $this->magazines = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     /**
      * Get id
@@ -88,6 +102,23 @@ class Nosology
     {
         $this->publications = $publications;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMagazines()
+    {
+        return $this->magazines;
+    }
+
+    /**
+     * @param mixed $magazines
+     */
+    public function setMagazines($magazines)
+    {
+        $this->magazines = $magazines;
+    }
+
 
 
 }

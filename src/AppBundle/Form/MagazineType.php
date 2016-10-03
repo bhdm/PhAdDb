@@ -16,7 +16,10 @@ class MagazineType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название'])
-            ->add('circulation')
+            ->add('circulation', null, ['label' => 'Тираж'])
+            ->add('periodicity', null, ['label' => 'Периодичность'])
+            ->add('bak', null, ['label' => 'BAK'])
+            ->add('nosologies', null, ['label' => 'Нозологии'])
             ->add('house', null, ['label' => 'Издательство'])
         ;
     }

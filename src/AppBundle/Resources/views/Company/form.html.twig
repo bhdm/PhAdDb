@@ -1,5 +1,13 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block breadcrumb %}
+        <ol class="breadcrumb">
+                <li><a href="#">Главная</a></li>
+                <li><a href="{{ path('company_list') }}">Список компаний</a></li>
+                <li class="active">Добавление / изменение компании</li>
+        </ol>
+{% endblock %}
+
 {% block content %}
         {{ form_start(form) }}
         {{ form_widget(form) }}

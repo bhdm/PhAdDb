@@ -3,8 +3,12 @@
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
-        <li class="active">Список форматов</li>
+        <li class="active">Список компаний</li>
+        <div style="float: right">
+            <a href="{{ path('company_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
+        </div>
     </ol>
+
 {% endblock %}
 
 {% block content %}

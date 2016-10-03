@@ -28,7 +28,7 @@ class Magazine
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank(message="Название магазина обязательно для заполнения")
+     * @Assert\NotBlank(message="Название журнала обязательно для заполнения")
      */
     private $title;
 
@@ -36,8 +36,16 @@ class Magazine
      * @var int
      *
      * @ORM\Column(name="circulation", type="integer")
+     * @Assert\NotBlank(message="Тираж обязателен для заполнения")
      */
     private $circulation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="periodicity", type="string", length=255, nullable=true)
+     */
+    private $periodicity;
 
     /**
      * @var ArrayCollection
@@ -61,10 +69,22 @@ class Magazine
      */
     private $house;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $bak;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Nosology", inversedBy="magazines")
+     */
+    private $nosologies;
+
     public function __construct()
     {
         $this->publications = new ArrayCollection();
+        $this->nosologies = new ArrayCollection();
         $this->prices = new ArrayCollection();
+        $this->bak = false;
     }
 
     /**
@@ -157,7 +177,69 @@ class Magazine
         $this->prices = $prices;
     }
 
+    /**
+     * @return PublishingHouse
+     */
+    public function getHouse()
+    {
+        return $this->house;
+    }
 
+    /**
+     * @param PublishingHouse $house
+     */
+    public function setHouse($house)
+    {
+        $this->house = $house;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPeriodicity()
+    {
+        return $this->periodicity;
+    }
+
+    /**
+     * @param string $periodicity
+     */
+    public function setPeriodicity($periodicity)
+    {
+        $this->periodicity = $periodicity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNosologies()
+    {
+        return $this->nosologies;
+    }
+
+    /**
+     * @param mixed $nosologies
+     */
+    public function setNosologies($nosologies)
+    {
+        $this->nosologies = $nosologies;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBak()
+    {
+        return $this->bak;
+    }
+
+    /**
+     * @param mixed $bak
+     */
+    public function setBak($bak)
+    {
+        $this->bak = $bak;
+    }
 
 }
 

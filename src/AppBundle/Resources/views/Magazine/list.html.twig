@@ -1,12 +1,15 @@
 {% extends '@App/layout.html.twig' %}
 
+
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
-        <li class="active">Список форматов</li>
+        <li class="active">Список журналов</li>
+        <div style="float: right">
+            <a href="{{ path('magazine_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
+        </div>
     </ol>
 {% endblock %}
-
 {% block content %}
     <table class="table table-hover">
         <tr>
