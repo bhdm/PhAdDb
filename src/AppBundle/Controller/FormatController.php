@@ -27,7 +27,7 @@ class FormatController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
-            $request->query->get('partner', 1),
+            $request->query->get('page', 1),
             20
         );
         return array('pagination' => $pagination);

@@ -15,8 +15,7 @@ class NosologyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('publications')
+            ->add('title', null, ['label' => 'Название'])
         ;
     }
     

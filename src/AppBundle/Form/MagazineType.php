@@ -15,9 +15,9 @@ class MagazineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', null, ['label' => 'Название'])
             ->add('circulation')
-            ->add('house')
+            ->add('house', null, ['label' => 'Издательство'])
         ;
     }
     

@@ -15,8 +15,8 @@ class GoodType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('company')
+            ->add('title', null, ['label' => 'Название'])
+            ->add('company', null, ['label' => 'Организация'])
         ;
     }
     
