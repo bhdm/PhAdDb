@@ -23,13 +23,6 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", nullable=true)
-     */
-    protected $phone;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="lastName", type="string")
      */
     protected $lastName;
@@ -47,20 +40,6 @@ class User extends BaseUser
      * @ORM\Column(name="surName", type="string", nullable=true)
      */
     protected $surName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string")
-     */
-    protected $status;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="birthDate", type="date")
-     */
-    protected $birthDate;
 
 
 
@@ -85,21 +64,6 @@ class User extends BaseUser
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
 
     /**
      * @return string
@@ -147,38 +111,6 @@ class User extends BaseUser
     public function setSurName($surName)
     {
         $this->surName = $surName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthDate()
-    {
-        return $this->birthDate;
-    }
-
-    /**
-     * @param \DateTime $birthDate
-     */
-    public function setBirthDate($birthDate)
-    {
-        $this->birthDate = $birthDate;
     }
 
 }

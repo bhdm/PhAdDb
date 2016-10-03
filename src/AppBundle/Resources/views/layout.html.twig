@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="index, follow"/>
+    {#<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
+
+    {% stylesheets "@AppBundle/Resources/public/less/common.less" %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+    {% endstylesheets %}
+
+    <script  src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script  src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script  src="{{ asset('assets/vendor/hinclude/hinclude.js') }}"></script>
+
+</head>
+<body>
+<div id="wrapper">
+    {% block fullcontent %}
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">Planer</a></li>
+                <li><hr /></li>
+                <li><a href="{{ path('format_list') }}">Форматы</a></li>
+                <li><a href="{{ path('publishing_house_list') }}">Издательства</a></li>
+                <li><a href="{{ path('company_list') }}">Организации</a></li>
+                <li><a href="#">Издания</a></li>
+                <li><a href="#">Магазины</a></li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="page-content">
+                {% block alert %}{% endblock %}
+                {% block breadcrumb %}{% endblock %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock  %}
+</div>
+</body>

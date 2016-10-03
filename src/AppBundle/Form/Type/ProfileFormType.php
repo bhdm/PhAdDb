@@ -21,35 +21,6 @@ class ProfileFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
-        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1920)]);
-
-        $builder->add('country', null, ['label' => 'Страна', 'attr' => ['class' => 'county']]);
-        $builder->add('city', TextType::class, ['label' => 'Город', 'attr' => ['class' => 'city']]);
-        $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
-
-        $builder->add('specialty', null, [
-            'label' => 'Специальность',
-            'data_class' => null,
-            'attr' => [
-                'class' => 'specialty',
-                'data-placeholder' => 'Выберите специальность'
-            ],
-            'required' => true
-        ]);
-        $builder->add('status', ChoiceType::class, array(
-            'choices' => array(
-                'практикующий врач' => 'практикующий врач',
-                'студент' => 'студент',
-                'медицинский представитель' => 'медицинский представитель',
-                'не практикующий врач' => 'не практикующий врач',
-                'не врач' => 'не врач'
-            ),
-            'expanded' => true,
-            'multiple' => false,
-            'required'    => true,
-            'label' => 'Статус'
-        ));
-
     }
 
     public function getParent()

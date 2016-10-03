@@ -20,22 +20,7 @@ class RegistrationFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
-        $builder->add('birthDate', null, ['label' => 'Дата рождения','years' => range(2000,1920)]);
 
-        $builder->add('status', ChoiceType::class, array(
-            'choices' => array(
-                'практикующий врач' => 'практикующий врач',
-                'студент' => 'студент',
-                'медицинский представитель' => 'медицинский представитель',
-                'не практикующий врач' => 'не практикующий врач',
-                'не врач' => 'не врач'
-            ),
-            'expanded' => true,
-            'multiple' => false,
-            'required'    => true,
-            'label' => 'Статус'
-        ));
-        $builder->add('phone', null, ['label' => 'Телефон', 'attr' => ['class' => 'phone']]);
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
             'invalid_message' => 'Пароли должны совпадать',
@@ -44,23 +29,6 @@ class RegistrationFormType extends AbstractType
             'first_options'  => array('label' => 'Пароль'),
             'second_options' => array('label' => 'Повторите пароль'),
         ));
-
-
-        $builder->add('specialty', null, [
-            'label' => 'Специальность',
-            'required' => true,
-            'data_class' => null,
-            'attr' => [
-                'class' => 'specialty',
-                'data-placeholder' => 'Выберите специальность'
-            ]
-        ]);
-
-//        $builder->add('workPlace', null, ['label' => 'Место работы']);
-//        $builder->add('certificateNumber', null, ['label' => 'Номер сертификата']);
-//        $builder->add('diplomNumber', null, ['label' => 'Номер диплома']);
-
-//        $builder->add('university', null, ['label' => 'Университет', 'attr' => ['class' => 'university', 'data-placeholder' => 'Выберите университет']]);
     }
 
     public function getParent()
