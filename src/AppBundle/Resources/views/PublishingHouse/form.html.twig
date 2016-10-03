@@ -1,8 +1,12 @@
 {% extends '@App/layout.html.twig' %}
 
 {% block content %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
 

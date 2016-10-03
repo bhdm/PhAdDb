@@ -1,16 +1,20 @@
 {% extends '@App/layout.html.twig' %}
 
 {% block breadcrumb %}
-        <ol class="breadcrumb">
-                <li><a href="#">Главная</a></li>
-                <li><a href="{{ path('company_list') }}">Список компаний</a></li>
-                <li class="active">Добавление / изменение компании</li>
-        </ol>
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('company_list') }}">Список компаний</a></li>
+        <li class="active">Добавление / изменение компании</li>
+    </ol>
 {% endblock %}
 
 {% block content %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+    <div class="row">
+        <div class="col-xs-8">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
 

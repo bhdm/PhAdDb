@@ -5,6 +5,8 @@
     <meta name="robots" content="index, follow"/>
     {#<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>#}
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/chosen/chosen.css') }}" />
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css') }}" />#}
 
     {% stylesheets "@AppBundle/Resources/public/less/common.less" %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
@@ -13,8 +15,16 @@
     <script  src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script  src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     <script  src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script  src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script  src="{{ asset('assets/vendor/hinclude/hinclude.js') }}"></script>
-
+    <script  src="{{ asset('assets/vendor/chosen/chosen.jquery.js') }}"></script>
+    {#<script  src="{{ asset('assets/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js') }}"></script>#}
+    <script type="text/javascript">
+        $(document).ready(function() {
+//            $('select[multiple]').multiselect();
+            $("select").chosen({disable_search_threshold: 10});
+        });
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -22,7 +32,8 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="#">Planer</a></li>
-                <li><hr /></li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
                 <li><a href="{{ path('format_list') }}">Форматы</a></li>
                 <li><a href="{{ path('publishing_house_list') }}">Издательства</a></li>
                 <li><a href="{{ path('company_list') }}">Организации</a></li>
@@ -32,9 +43,13 @@
             </ul>
         </div>
         <div id="page-content-wrapper">
+            <div class="header">
+
+            </div>
             <div class="page-content">
                 {% block alert %}{% endblock %}
                 {% block breadcrumb %}{% endblock %}
+                <br />
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">

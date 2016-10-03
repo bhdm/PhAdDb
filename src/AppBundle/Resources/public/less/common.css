@@ -61,3 +61,7 @@ td.setting {
   width: 250px;
   text-align: right;
 }
+.header {
+  height: 50px;
+  background: #9b0d27;
+}
