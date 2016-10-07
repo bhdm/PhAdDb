@@ -45,11 +45,17 @@ class Format
      */
     private $prices;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Format", mappedBy="format")
+     */
+    private $magazines;
+
 
     public function __construct()
     {
         $this->publications = new ArrayCollection();
         $this->prices = new ArrayCollection();
+        $this->magazines = new ArrayCollection();
     }
 
     public function __toString()
@@ -121,6 +127,22 @@ class Format
     public function setPrices($prices)
     {
         $this->prices = $prices;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMagazines()
+    {
+        return $this->magazines;
+    }
+
+    /**
+     * @param mixed $magazines
+     */
+    public function setMagazines($magazines)
+    {
+        $this->magazines = $magazines;
     }
 
 

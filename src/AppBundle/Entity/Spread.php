@@ -4,16 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
- * PublishingHouse
+ * Spread
  *
- * @ORM\Table(name="publishing_houses")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PublishingHouseRepository")
+ * @ORM\Table(name="spread")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SpreadRepository")
  */
-class PublishingHouse
+class Spread
 {
     /**
      * @var int
@@ -27,27 +25,25 @@ class PublishingHouse
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank(message="Название обязательно для заполнения")
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
+
     /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Magazine", mappedBy="house")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Spread", mappedBy="spread")
      */
     private $magazines;
 
 
-    public function __construct()
-    {
-        $this->magazines = new ArrayCollection();
-    }
-
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    public function __construct()
+    {
+        $this->magazines = new ArrayCollection();
     }
 
     /**
@@ -65,7 +61,7 @@ class PublishingHouse
      *
      * @param string $title
      *
-     * @return PublishingHouse
+     * @return Spread
      */
     public function setTitle($title)
     {
@@ -85,7 +81,7 @@ class PublishingHouse
     }
 
     /**
-     * @return ArrayCollection
+     * @return mixed
      */
     public function getMagazines()
     {
@@ -93,7 +89,7 @@ class PublishingHouse
     }
 
     /**
-     * @param ArrayCollection $magazines
+     * @param mixed $magazines
      */
     public function setMagazines($magazines)
     {

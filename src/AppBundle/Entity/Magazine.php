@@ -79,12 +79,57 @@ class Magazine
      */
     private $nosologies;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Spread", inversedBy="magazines")
+     */
+    private $spread;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Format", inversedBy="magazines")
+     */
+    private $format;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $impactFactor;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $mainEditor;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $audience;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $citationSystem;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated;
+
+
+
     public function __construct()
     {
+        $this->updated = new \DateTime();
         $this->publications = new ArrayCollection();
+        $this->spread = new ArrayCollection();
         $this->nosologies = new ArrayCollection();
         $this->prices = new ArrayCollection();
         $this->bak = false;
+        $this->citationSystem = false;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**
@@ -239,6 +284,125 @@ class Magazine
     public function setBak($bak)
     {
         $this->bak = $bak;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpread()
+    {
+        return $this->spread;
+    }
+
+    /**
+     * @param mixed $spread
+     */
+    public function setSpread($spread)
+    {
+        $this->spread = $spread;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImpactFactor()
+    {
+        return $this->impactFactor;
+    }
+
+    /**
+     * @param mixed $impactFactor
+     */
+    public function setImpactFactor($impactFactor)
+    {
+        $this->impactFactor = $impactFactor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCitationSystem()
+    {
+        return $this->citationSystem;
+    }
+
+    /**
+     * @param mixed $citationSystem
+     */
+    public function setCitationSystem($citationSystem)
+    {
+        $this->citationSystem = $citationSystem;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate(){
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMainEditor()
+    {
+        return $this->mainEditor;
+    }
+
+    /**
+     * @param mixed $mainEditor
+     */
+    public function setMainEditor($mainEditor)
+    {
+        $this->mainEditor = $mainEditor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    /**
+     * @param mixed $audience
+     */
+    public function setAudience($audience)
+    {
+        $this->audience = $audience;
     }
 
 }

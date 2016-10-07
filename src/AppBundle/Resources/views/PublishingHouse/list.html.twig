@@ -11,21 +11,31 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table table-hover">
+    <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>
-            <th>Название формата</th>
+            <th>Название</th>
+            <th>Издание</th>
             <th></th>
         </tr>
         {% for item in pagination %}
             <tr>
                 <td>{{ item.id }}</td>
                 <td>{{ item.title }}</td>
+                <td></td>
                 <td class="setting">
                     <a href="{{ path('format_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('format_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
                 </td>
             </tr>
+            {% for magazine in item.magazines %}
+                <tr class="magazines">
+                    <td></td>
+                    <td></td>
+                    <td>{{ magazine }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
         {% endfor %}
     </table>
     <div class="navigation">

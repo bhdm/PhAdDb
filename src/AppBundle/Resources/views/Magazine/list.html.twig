@@ -11,16 +11,36 @@
     </ol>
 {% endblock %}
 {% block content %}
-    <table class="table table-hover">
+    <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>
-            <th>Название формата</th>
+            <th>Издание <br />Издательство</th>
+            <th>Нозология</th>
+            <th>Периодичность  Тираж</th>
+            <th>Формат издания</th>
+            <th>Распространение (География)</th>
+            <th>Статус ВАК</th>
+            <th>Импакт-фактор издания</th>
+            <th>Международные системы цитирования</th>
+            <th>Дата обновления</th>
+            <th>ФИО, регалии Главного редактора</th>
+            <th>Аудитория издания</th>
             <th></th>
         </tr>
         {% for item in pagination %}
             <tr>
                 <td>{{ item.id }}</td>
-                <td>{{ item.title }}</td>
+                <td>{{ item.title }}<br />{{ item.house }}</td>
+                <td>{{ item.nosologies |join(', ') }}</td>
+                <td>{{ item.periodicity }} <br />{{ item.circulation }}</td>
+                <td>{{ item.format }}</td>
+                <td>{{ item.spread|join(', ')  }}</td>
+                <td>{% if item.bak == true %}<span class="glyphicon glyphicon-ok text-success"></span>{% else %}<span class="glyphicon glyphicon-remove text-danger"></span>{% endif %}</td>
+                <td>{{ item.impactFactor }}</td>
+                <td>{% if item.citationSystem == true %}<span class="glyphicon glyphicon-ok text-success"></span>{% else %}<span class="glyphicon glyphicon-remove text-danger"></span>{% endif %}</td>
+                <td>{{ item.updated | date('d.m.Y') }}</td>
+                <td>{{ item.mainEditor }}</td>
+                <td>{{ item.audience }}</td>
                 <td class="setting">
                     <a href="{{ path('format_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('format_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>

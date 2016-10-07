@@ -65,3 +65,6 @@ td.setting {
   height: 50px;
   background: #9b0d27;
 }
+.table-custom tbody tr td {
+  font-size: 13px;
+}

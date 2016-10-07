@@ -15,12 +15,17 @@ class MagazineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('house', null, ['label' => 'Издательство'])
+            ->add('format', null, ['label' => 'Формат'])
             ->add('title', null, ['label' => 'Название'])
             ->add('circulation', null, ['label' => 'Тираж'])
             ->add('periodicity', null, ['label' => 'Периодичность'])
-            ->add('bak', null, ['label' => 'BAK'])
             ->add('nosologies', null, ['label' => 'Нозологии'])
-            ->add('house', null, ['label' => 'Издательство'])
+            ->add('bak', null, ['label' => 'BAK'])
+            ->add('impactFactor', null, ['label' => 'Импакт-фактор издания'])
+            ->add('citationSystem', null, ['label' => 'Международные системы цитирования'])
+            ->add('mainEditor', null, ['label' => 'ФИО, регалии Главного редактора'])
+            ->add('audience', null, ['label' => 'Аудитория издания'])
         ;
     }
     
