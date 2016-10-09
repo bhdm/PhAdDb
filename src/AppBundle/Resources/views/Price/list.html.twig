@@ -4,6 +4,9 @@
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
         <li class="active">Список цен</li>
+        {% if magazine != null %}
+            <li>{{ magazine.title }}</li>
+        {% endif %}
         <div style="float: right">
             <a href="{{ path('price_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
         </div>

@@ -23,7 +23,11 @@ class MagazineController extends Controller
      */
     public function listAction(Request $request)
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findAll();
+        if ($request->query->get('search')){
+            $items = $this->getDoctrine()->getRepository('AppBundle:Magazine')->search($request->query->get('search'));
+        }else{
+            $items = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findAll();
+        }
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,

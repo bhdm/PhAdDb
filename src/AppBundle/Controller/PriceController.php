@@ -18,19 +18,26 @@ use Symfony\Component\HttpFoundation\Request;
 class PriceController extends Controller
 {
     /**
-     * @Route("/list", name="price_list")
+     * @Route("/list/{id}", name="price_list", defaults={"id" = null})
      * @Template()
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request, $id = null)
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Price')->findAll();
+        if ($id == null){
+            $items = $this->getDoctrine()->getRepository('AppBundle:Price')->findAll();
+            $magazine = null;
+        }else{
+            $magazine = $this->getDoctrine()->getRepository('AppBundle:Magazine')->find($id);
+            $items = $this->getDoctrine()->getRepository('AppBundle:Price')->findBy(['magazine' => $magazine]);
+        }
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
             $request->query->get('page', 1),
             20
         );
-        return array('pagination' => $pagination);
+        return array('pagination' => $pagination, 'magazine' => $magazine);
     }
 
     /**

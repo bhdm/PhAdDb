@@ -11,6 +11,17 @@
     </ol>
 {% endblock %}
 {% block content %}
+    <form method="get">
+        <div class="row">
+            <div class="col-xs-8">
+                <input type="text" placeholder="Поиск" class="form-control" name="search">
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary">Найти</button>
+            </div>
+        </div>
+    </form>
+    <br />
     <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>
@@ -30,7 +41,7 @@
         {% for item in pagination %}
             <tr>
                 <td>{{ item.id }}</td>
-                <td>{{ item.title }}<br />{{ item.house }}</td>
+                <td><a href="{{ path('price_list',{'id' : item.id }) }}">{{ item.title }}</a><br />{{ item.house }}</td>
                 <td>{{ item.nosologies |join(', ') }}</td>
                 <td>{{ item.periodicity }} <br />{{ item.circulation }}</td>
                 <td>{{ item.format }}</td>

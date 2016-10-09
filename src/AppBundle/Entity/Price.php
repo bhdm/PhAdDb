@@ -55,6 +55,35 @@ class Price
     private $format;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Позиция обязательна для заполнения")
+     */
+    private $position;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $color;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Format")
+     */
+    private $publicationBonus;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $nds;
+
+
+
+    public function __construct()
+    {
+        $this->color = false;
+        $this->nds = false;
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -134,6 +163,70 @@ class Price
     public function setFormat($format)
     {
         $this->format = $format;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param mixed $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param mixed $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublicationBonus()
+    {
+        return $this->publicationBonus;
+    }
+
+    /**
+     * @param mixed $publicationBonus
+     */
+    public function setPublicationBonus($publicationBonus)
+    {
+        $this->publicationBonus = $publicationBonus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNds()
+    {
+        return $this->nds;
+    }
+
+    /**
+     * @param mixed $nds
+     */
+    public function setNds($nds)
+    {
+        $this->nds = $nds;
     }
 
 

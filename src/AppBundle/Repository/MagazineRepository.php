@@ -10,4 +10,36 @@ namespace AppBundle\Repository;
  */
 class MagazineRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $query
+     * @return array
+     * Поиск по
+     *  названию журнала
+     *  Названию издательства
+     *  Нозологии
+     *  Формату
+     *  Распространению
+     *  Импакт-фактор
+     *  ФИО редактора
+     */
+    public function search($query){
+        $qb = $this->createQueryBuilder('s');
+        $qb->select('s');
+        $qb
+           ->leftJoin('s.format', 'format')
+           ->leftJoin('s.nosologies', 'nosologies')
+           ->leftJoin('s.house', 'house')
+           ->leftJoin('s.spread', 'spread')
+
+            ->where("s.title LIKE '%$query%'")
+            ->orWhere("s.impactFactor LIKE '%$query%'")
+            ->orWhere("s.mainEditor LIKE '%$query%'")
+            ->orWhere("format.title LIKE '%$query%'")
+            ->orWhere("house.title LIKE '%$query%'")
+            ->orWhere("spread.title LIKE '%$query%'")
+            ->orWhere("nosologies.title LIKE '%$query%'")
+            ->orderBy('s.id', 'ASC');
+        $result = $qb->getQuery()->getResult();
+        return $result;
+    }
 }
