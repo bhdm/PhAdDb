@@ -20,6 +20,10 @@ class RegistrationFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
+        $builder->add('roles', ChoiceType::class, [
+            'label' => 'Права',
+            'choices' => ['Администратор' => 'ROLE_ADMIN','Пользователь' => 'ROLE_USER']
+        ]);
 
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,

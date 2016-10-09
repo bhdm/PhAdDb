@@ -1,0 +1,20 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('price_list') }}">Список цен</a></li>
+        <li class="active">Добавление / изменение цены</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-8">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+

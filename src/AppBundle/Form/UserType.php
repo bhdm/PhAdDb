@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PriceType extends AbstractType
+class UserType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,10 +15,9 @@ class PriceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('year', null, ['label' => 'Год'])
-            ->add('price', null, ['label' => 'Стоимость'])
-            ->add('magazine', null, ['label' => 'Журнал'])
-            ->add('format', null, ['label' => 'Формат'])
+            ->add('lastName', null, ['label' => 'Фамилия'])
+            ->add('firstName', null, ['label' => 'Имя'])
+            ->add('surName', null, ['label' => 'Отчество'])
         ;
     }
     
@@ -28,7 +27,7 @@ class PriceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Price'
+            'data_class' => 'AppBundle\Entity\User'
         ));
     }
 }
