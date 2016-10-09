@@ -11,3 +11,16 @@ services:
 
     fos_user.doctrine_registry:
         alias: doctrine
+
+    app.form.type.magazine:
+        class: AppBundle\Form\MagazineType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+
+    app.form.type.price:
+        class: AppBundle\Form\PriceType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+

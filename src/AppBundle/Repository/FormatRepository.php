@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class FormatRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findForAutocomplete($title){
+        $qb = $this->createQueryBuilder('b')
+            ->select('b.title');
+        if ($title){
+            $qb->where("b.title LIKE '%$title%'");
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

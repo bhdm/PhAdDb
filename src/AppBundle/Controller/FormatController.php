@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -94,5 +95,18 @@ class FormatController extends Controller
             $em->flush();
         }
         return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
+     * @Route("/api/formats/all", name="api_get_format", options={"expose" = true})
+     */
+    public function getBrandsAction(Request $request){
+        $title = $request->query->get('title');
+        $formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findForAutocomplete($title);
+        $us = [];
+        foreach ($formats as $format) {
+            $us[] = $format['title'];
+        }
+        return new JsonResponse($us);
     }
 }

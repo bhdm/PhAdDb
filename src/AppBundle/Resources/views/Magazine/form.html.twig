@@ -1,5 +1,43 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/themes/base/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/themes/base/theme.css') }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $( ".format" ).autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: Routing.generate('api_get_format'),
+                        dataType: "json",
+                        data: {
+                            title: request.term
+                        },
+                        success: function( data ) {
+                            response( data );
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+                    $( ".brand").val(ui.item);
+                },
+                open: function() {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                },
+                close: function() {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                }
+            });
+        })
+    </script>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-xs-8">
