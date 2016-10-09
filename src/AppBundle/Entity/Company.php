@@ -36,6 +36,11 @@ class Company
      */
     private $goods;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Mediaplan", mappedBy="company")
+     */
+    private $mediaplans;
+
 
     public function __toString()
     {
@@ -45,6 +50,7 @@ class Company
     public function __construct()
     {
         $this->goods = new ArrayCollection();
+        $this->mediaplans = new ArrayCollection();
     }
 
     /**
@@ -97,6 +103,21 @@ class Company
         $this->goods = $goods;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMediaplans()
+    {
+        return $this->mediaplans;
+    }
+
+    /**
+     * @param mixed $mediaplans
+     */
+    public function setMediaplans($mediaplans)
+    {
+        $this->mediaplans = $mediaplans;
+    }
 
 }
 

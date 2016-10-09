@@ -1,0 +1,46 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li class="active">Список медиапланов</li>
+        <div style="float: right">
+            <a href="{{ path('mediaplan_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
+        </div>
+    </ol>
+
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover">
+        <tr>
+            <th>Издание</th>
+            <th>Ид</th>
+            <th>Год</th>
+            <th>Периодичность<br />Тираж</th>
+            <th>Распространение</th>
+            <th>Формат</th>
+            <th>Кол-во публикаций</th>
+            <th></th>
+        </tr>
+        {% for item in pagination %}
+            <tr>
+                <td>{{ item }}</td>
+                <td>{{ item.year }}</td>
+                <td>{{ item.idn }}</td>
+                <td>{{ item.magazine.periodicity }} <br />{{ item.magazine.circulation }}</td>
+                <td>{{ item.magazine.spread | join(', ') }}</td>
+                <td>{{ item.magazine.format }}</td>
+                <td>{{ item.getCount() }}</td>
+                <td class="setting">
+                    <a href="{{ path('mediaplan_print', {'id' : item.id} ) }}"><button class="btn-xs btn-success"><span class="glyphicon glyphicon-print"></span> Печать</button></a>
+                    <a href="{{ path('mediaplan_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
+                    <button class="btn-xs btn-danger" data-href="{{ path('mediaplan_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

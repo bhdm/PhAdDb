@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new TFox\MpdfPortBundle\TFoxMpdfPortBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new AppBundle\AppBundle(),
         ];
 

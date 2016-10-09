@@ -114,6 +114,10 @@ class Magazine
      */
     private $updated;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Magazine", mappedBy="magazine")
+     */
+    private $mediaplans;
 
 
     public function __construct()
@@ -123,6 +127,7 @@ class Magazine
         $this->spread = new ArrayCollection();
         $this->nosologies = new ArrayCollection();
         $this->prices = new ArrayCollection();
+        $this->mediaplans = new ArrayCollection();
         $this->bak = false;
         $this->citationSystem = false;
     }
@@ -404,6 +409,23 @@ class Magazine
     {
         $this->audience = $audience;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaplans()
+    {
+        return $this->mediaplans;
+    }
+
+    /**
+     * @param mixed $mediaplans
+     */
+    public function setMediaplans($mediaplans)
+    {
+        $this->mediaplans = $mediaplans;
+    }
+
 
 }
 
