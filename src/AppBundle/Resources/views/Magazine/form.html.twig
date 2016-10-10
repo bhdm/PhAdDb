@@ -34,6 +34,31 @@
                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                 }
             });
+
+            $( ".spread" ).autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: Routing.generate('api_get_spread'),
+                        dataType: "json",
+                        data: {
+                            title: request.term
+                        },
+                        success: function( data ) {
+                            response( data );
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+                    $( ".brand").val(ui.item);
+                },
+                open: function() {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                },
+                close: function() {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                }
+            });
         })
     </script>
 {% endblock %}

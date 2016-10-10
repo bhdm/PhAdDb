@@ -66,10 +66,11 @@ class FormatToStringTransformer implements DataTransformerInterface
         $format = $builder->getQuery()->getOneOrNullResult();
 
         if (empty($format)) {
-            throw new TransformationFailedException(sprintf(
-                'Формат "%s" не найден!',
-                $string
-            ));
+            $format = new Format();
+            $format->setTitle($string);
+            $this->om->persist($format);
+            $this->om->flush($format);
+            $this->om->refresh($format);
         }
 
         return $format;

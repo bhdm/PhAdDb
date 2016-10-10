@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -98,5 +99,18 @@ class MagazineController extends Controller
             $em->flush();
         }
         return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
+     * @Route("/api/spread/all", name="api_get_spread", options={"expose" = true})
+     */
+    public function getSpreadAction(Request $request){
+        $title = $request->query->get('title');
+        $spreads = $this->getDoctrine()->getRepository('AppBundle:Spread')->findForAutocomplete($title);
+        $us = [];
+        foreach ($spreads as $spread) {
+            $us[] = $spread['title'];
+        }
+        return new JsonResponse($us);
     }
 }

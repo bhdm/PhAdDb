@@ -31,7 +31,7 @@ class Spread
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Spread", mappedBy="spread")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Magazine", mappedBy="spread")
      */
     private $magazines;
 

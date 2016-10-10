@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Form\DataTransformer\FormatToStringTransformer;
+use AppBundle\Form\DataTransformer\SpreadToStringTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -35,10 +36,13 @@ class MagazineType extends AbstractType
             ->add('impactFactor', null, ['label' => 'Импакт-фактор издания'])
             ->add('citationSystem', null, ['label' => 'Международные системы цитирования'])
             ->add('mainEditor', null, ['label' => 'ФИО, регалии Главного редактора'])
+//            ->add('spread', TextType::class , ['label' => 'Распространение', 'attr' => ['class' => 'spread']])
             ->add('audience', null, ['label' => 'Аудитория издания'])
+
         ;
 
         $builder->get('format')->addModelTransformer(new FormatToStringTransformer($this->manager));
+//        $builder->get('spread')->addModelTransformer(new SpreadToStringTransformer($this->manager));
     }
     
     /**
