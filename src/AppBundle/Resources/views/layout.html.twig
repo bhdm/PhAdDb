@@ -37,14 +37,17 @@
                 <li>&nbsp;</li>
                 <li>&nbsp;</li>
                 <li><a href="{{ path('format_list') }}">Форматы</a></li>
-                <li><a href="{{ path('publishing_house_list') }}">Издательства</a></li>
-                <li><a href="{{ path('company_list') }}">Организации</a></li>
                 <li><a href="{{ path('good_list') }}">Товары</a></li>
                 <li><a href="{{ path('magazine_list') }}">Издание</a></li>
                 <li><a href="{{ path('price_list') }}">Цены</a></li>
-                <li><a href="{{ path('nosology_list') }}">Нозология</a></li>
-                <li><a href="{{ path('user_list') }}">Пользователи</a></li>
                 <li><a href="{{ path('mediaplan_list') }}">Медиапланы</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><hr /></li>
+                    <li><a href="{{ path('publishing_house_list') }}">Издательства</a></li>
+                    <li><a href="{{ path('company_list') }}">Организации</a></li>
+                    <li><a href="{{ path('nosology_list') }}">Нозология</a></li>
+                    <li><a href="{{ path('user_list') }}">Пользователи</a></li>
+                {% endif %}
                 <li><hr /></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Выйти</a></li>
             </ul>

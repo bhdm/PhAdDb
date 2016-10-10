@@ -113,6 +113,7 @@ class MediaplanController extends Controller
             ->setKeywords("office 2005 openxml php")
             ->setCategory("Test result file");
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A2', 'Клиент: '.$plan->getCompany());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A3', 'Договор: '.$plan->getContractNumber());
 
 
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A4', 'Издание');
@@ -146,6 +147,13 @@ class MediaplanController extends Controller
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC4', 'Агентская комиссия, включая НДС 18%');
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD4', 'Бюджет после скидки, включая АК, без НДС');
 
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE4', 'Общий бюджет, без НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF4', 'Скидка, %');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG4', 'Бюджет после скидки, без  НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH4', 'OMI');
+
+        $phpExcelObject->setActiveSheetIndex(0)->freezePane('B1');
+
         $phpExcelObject->setActiveSheetIndex(0)->getStyle('A4:AD4')->applyFromArray(
             array(
                 'fill' => array(
@@ -154,12 +162,50 @@ class MediaplanController extends Controller
                 )
             )
         );
-        $phpExcelObject->getActiveSheet()->getStyle('A4:AD4')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $phpExcelObject->getActiveSheet()->getStyle('A4:AD4')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        $phpExcelObject->setActiveSheetIndex(0)->getStyle('AE4:AH4')->applyFromArray(
+            array(
+                'fill' => array(
+                    'type' => \PHPExcel_Style_Fill::FILL_SOLID,
+                    'color' => array('rgb' => 'FFCCCC')
+                )
+            )
+        );
 
+        $phpExcelObject->setActiveSheetIndex(0)->getStyle('A4:AH5')->applyFromArray(
+            array(
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => \PHPExcel_Style_Border::BORDER_THIN
+                    )
+                )
+            )
+        );
+        $phpExcelObject->setActiveSheetIndex(0)->getStyle('A1:A2')->applyFromArray(
+            array(
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => \PHPExcel_Style_Border::BORDER_THIN
+                    )
+                )
+            )
+        );
+
+        $phpExcelObject->getActiveSheet()->getStyle("A4:AH4")->getFont()->setBold(true);
+        $phpExcelObject->getActiveSheet()->getStyle("AC6:AD6")->getFont()->setBold(true);
+        $phpExcelObject->getActiveSheet()->getStyle("A2:A3")->getFont()->setBold(true);
+
+
+        $phpExcelObject->getActiveSheet()->getStyle('A4:AH4')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $phpExcelObject->getActiveSheet()->getStyle('A4:AH4')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+
+        $phpExcelObject->getActiveSheet()->getRowDimension('1')->setRowHeight(40);
+        $phpExcelObject->getActiveSheet()->getRowDimension('2')->setRowHeight(40);
+        $phpExcelObject->getActiveSheet()->getRowDimension('3')->setRowHeight(40);
         $phpExcelObject->getActiveSheet()->getRowDimension('4')->setRowHeight(40);
+        $phpExcelObject->getActiveSheet()->getRowDimension('5')->setRowHeight(40);
+        $phpExcelObject->getActiveSheet()->getRowDimension('6')->setRowHeight(40);
 
-        $phpExcelObject->getActiveSheet()->getColumnDimension('A')->setWidth(15);
+        $phpExcelObject->getActiveSheet()->getColumnDimension('A')->setWidth(25);
         $phpExcelObject->getActiveSheet()->getColumnDimension('B')->setWidth(15);
         $phpExcelObject->getActiveSheet()->getColumnDimension('C')->setWidth(15);
         $phpExcelObject->getActiveSheet()->getColumnDimension('D')->setWidth(15);
@@ -190,7 +236,51 @@ class MediaplanController extends Controller
         $phpExcelObject->getActiveSheet()->getColumnDimension('AC')->setWidth(15);
         $phpExcelObject->getActiveSheet()->getColumnDimension('AD')->setWidth(15);
 
+        $phpExcelObject->getActiveSheet()->getColumnDimension('AE')->setWidth(20);
+        $phpExcelObject->getActiveSheet()->getColumnDimension('AF')->setWidth(15);
+        $phpExcelObject->getActiveSheet()->getColumnDimension('AG')->setWidth(20);
+        $phpExcelObject->getActiveSheet()->getColumnDimension('AH')->setWidth(15);
 
+
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A5', $plan->getMagazine()->getHouse());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B5', $plan->getIdn());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C5', $plan->getMagazine()->getCirculation());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D5', $plan->getMagazine()->getPeriodicity());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F5', $plan->getMagazine()->getFormat());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G5', ($plan->getMagazine()->getBak() == true? 'Да' : 'Нет'));
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('K5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('L5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('M5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('N5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('O5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('P5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Q5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('R5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('S5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('T5', '');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U5', $plan->getCount());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V5', $plan->getPrice());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W5', $plan->getPrice()*$plan->getCount());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X5', $plan->getSale());
+        $y = $plan->getPrice()*$plan->getCount()*(100-$plan->getSale())/100;
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y5', $y);
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z5', '18,00%');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA5', $y+($y*1.18));
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB5', $y*0.05);
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC5', $y*0.05*1.18);
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD5', ($y+($y*1.18))+($y*0.05*1.18));
+
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE5', $plan->getInteralBudget());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF5', $plan->getInteralSale());
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG5', $plan->getInteralBudget()*(100-$plan->getInteralSale())/100);
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH5', $y-($plan->getInteralBudget()*(100-$plan->getInteralSale())/100));
+
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC6', 'Общий бюджет:');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD6', ($y+($y*1.18))+($y*0.05*1.18));
 
 
         $phpExcelObject->getActiveSheet()->setTitle('Simple');

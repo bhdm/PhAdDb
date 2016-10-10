@@ -32,7 +32,7 @@
                 <td>{{ item.magazine.spread | join(', ') }}</td>
                 <td>{{ item.magazine.format }}</td>
                 <td>{{ item.getCount() }}</td>
-                <td class="setting">
+                <td class="setting" style="width: 300px">
                     <a href="{{ path('mediaplan_print', {'id' : item.id} ) }}"><button class="btn-xs btn-success"><span class="glyphicon glyphicon-print"></span> Печать</button></a>
                     <a href="{{ path('mediaplan_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('mediaplan_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
