@@ -1,17 +1,19 @@
 {% extends '@App/layout.html.twig' %}
 
-{% block title %}Добавление / изменение пользователей{% endblock %}
+{% block title %}Список пользователей{% endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
-        <li><a href="{{ path('user_list') }}">Список пользоватлей</a></li>
-        <li class="active">Добавление / изменение пользователя</li>
+        <li class="active">Список пользователей</li>
+        <div style="float: right">
+            <a href="{{ path('user_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
+        </div>
     </ol>
 {% endblock %}
 
 {% block content %}
-    <table class="table table-hover">
+    <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>
             <th>Ф.И.О.</th>

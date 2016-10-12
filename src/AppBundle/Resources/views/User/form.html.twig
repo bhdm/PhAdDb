@@ -1,6 +1,14 @@
 {% extends '@App/layout.html.twig' %}
 
-{% block title %}Список пользователей{% endblock %}
+{% block title %}Добавление / изменение пользователя{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('user_list') }}">Список пользоватлей</a></li>
+        <li class="active">Добавление / изменение пользователя</li>
+    </ol>
+{% endblock %}
 
 {% block content %}
     <div class="row">
