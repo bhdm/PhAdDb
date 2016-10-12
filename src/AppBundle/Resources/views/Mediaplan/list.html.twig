@@ -16,43 +16,43 @@
 {% block content %}
     <label>Фильтр</label>
     <form method="GET">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3 filter">
-            <select class="" data-placeholder="Издательсво" name="house">
-                {% for item in houses %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <select class="" data-placeholder="Издательсво" name="house">
                     <option value="null">Все издательства</option>
-                    <option value="{{ item.id }}">{{ item }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 filter">
-            <select class="" data-placeholder="Издание" name="magazine">
-                {% for item in magazines %}
+                    {% for item in houses %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <select class="" data-placeholder="Издание" name="magazine">
                     <option value="null">Все издания</option>
-                    <option value="{{ item.id }}">{{ item }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 filter">
-            <select class="" data-placeholder="Организация" name="company">
-                {% for item in companies %}
+                    {% for item in magazines %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <select class="" data-placeholder="Организация" name="company">
                     <option value="null">Все организации</option>
-                    <option value="{{ item.id }}">{{ item }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-2 filter">
-            <select class="" data-placeholder="Формат" name="format">
-                {% for item in formats %}
+                    {% for item in companies %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2 filter">
+                <select class="" data-placeholder="Формат" name="format">
                     <option value="null">Все форматы</option>
-                    <option value="{{ item.id }}">{{ item }}</option>
-                {% endfor %}
-            </select>
+                    {% for item in formats %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-1">
+                <button class="btn-xs btn-primary" type="submit">Найти</button>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-1">
-            <button class="btn-xs btn-primary" type="submit">Найти</button>
-        </div>
-    </div>
     </form>
     <br />
     <table class="table table-hover table-custom">

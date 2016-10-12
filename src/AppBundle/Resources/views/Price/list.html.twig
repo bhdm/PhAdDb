@@ -17,6 +17,39 @@
 {% endblock %}
 
 {% block content %}
+    <label>Фильтр</label>
+    <form method="GET">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <select class="" data-placeholder="Издательсво" name="house">
+                    <option value="null">Все издательства</option>
+                    {% for item in houses %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <select class="" data-placeholder="Издание" name="magazine">
+                    <option value="null">Все издания</option>
+                    {% for item in magazines %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2 filter">
+                <select class="" data-placeholder="Формат" name="format">
+                    <option value="null">Все форматы</option>
+                    {% for item in formats %}
+                        <option value="{{ item.id }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-1">
+                <button class="btn-xs btn-primary" type="submit">Найти</button>
+            </div>
+        </div>
+    </form>
+    <br />
     <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>

@@ -37,7 +37,19 @@ class PriceController extends Controller
             $request->query->get('page', 1),
             20
         );
-        return array('pagination' => $pagination, 'magazine' => $magazine);
+        $houses = $this->getDoctrine()->getRepository('AppBundle:PublishingHouse')->findBy([],['title' => 'ASC']);
+        $magazines = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findBy([],['title' => 'ASC']);
+        $companies = $this->getDoctrine()->getRepository('AppBundle:Company')->findBy([],['title' => 'ASC']);
+        $formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findBy([],['title' => 'ASC']);
+
+        return array(
+            'pagination' => $pagination,
+            'magazine' => $magazine,
+            'magazines'=> $magazines,
+            'houses'=> $houses,
+            'companies'=> $companies,
+            'formats'=> $formats,
+        );
     }
 
     /**
