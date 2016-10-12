@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
         <li class="active">Список рекламных модулей</li>
-        <div style="float: right">
+        <div style="float: right" class="btn-add">
             <a href="{{ path('good_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
         </div>
     </ol>
@@ -16,13 +16,17 @@
     <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>
-            <th>Название формата</th>
+            <th>Организация</th>
+            <th>Название</th>
+            <th>Прайс-лист</th>
             <th></th>
         </tr>
         {% for item in pagination %}
             <tr>
                 <td>{{ item.id }}</td>
+                <td>{{ item.company }}</td>
                 <td>{{ item.title }}</td>
+                <td>{{ item.price }}</td>
                 <td class="setting">
                     <a href="{{ path('format_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('format_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>

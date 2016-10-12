@@ -71,3 +71,6 @@ td.setting {
 .filter select {
   width: 100%;
 }
+.btn-add .btn {
+  margin-top: -7px;
+}
