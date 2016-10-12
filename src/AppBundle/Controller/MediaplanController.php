@@ -31,7 +31,17 @@ class MediaplanController extends Controller
             $request->query->get('page', 1),
             20
         );
-        return array('pagination' => $pagination);
+        $houses = $this->getDoctrine()->getRepository('AppBundle:PublishingHouse')->findBy([],['title' => 'ASC']);
+        $magazines = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findBy([],['title' => 'ASC']);
+        $companies = $this->getDoctrine()->getRepository('AppBundle:Company')->findBy([],['title' => 'ASC']);
+        $formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findBy([],['title' => 'ASC']);
+        return array(
+            'pagination' => $pagination,
+            'magazines'=> $magazines,
+            'houses'=> $houses,
+            'companies'=> $companies,
+            'formats'=> $formats,
+        );
     }
 
     /**

@@ -68,3 +68,6 @@ td.setting {
 .table-custom tbody tr td {
   font-size: 13px;
 }
+.filter select {
+  width: 100%;
+}
