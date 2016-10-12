@@ -1,5 +1,15 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Добавление / изменение формата{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('format_list') }}">Список форматов</a></li>
+        <li class="active">Добавление / изменение формата</li>
+    </ol>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-xs-8">

@@ -32,6 +32,27 @@ class Company
     private $title;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="requisites", type="text", nullable=true)
+     */
+    private $requisites;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="string", nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contactPerson", type="string", nullable=true)
+     */
+    private $contactPerson;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Company", mappedBy="company")
      */
     private $goods;
@@ -118,6 +139,55 @@ class Company
     {
         $this->mediaplans = $mediaplans;
     }
+
+    /**
+     * @return string
+     */
+    public function getRequisites()
+    {
+        return $this->requisites;
+    }
+
+    /**
+     * @param string $requisites
+     */
+    public function setRequisites($requisites)
+    {
+        $this->requisites = $requisites;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param string $contact
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactPerson()
+    {
+        return $this->contactPerson;
+    }
+
+    /**
+     * @param string $contactPerson
+     */
+    public function setContactPerson($contactPerson)
+    {
+        $this->contactPerson = $contactPerson;
+    }
+
 
 }
 

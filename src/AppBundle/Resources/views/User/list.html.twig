@@ -1,12 +1,12 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Добавление / изменение пользователей{% endblock %}
+
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
-        <li class="active">Список пользователей</li>
-        <div style="float: right">
-            <a href="{{ path('user_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
-        </div>
+        <li><a href="{{ path('user_list') }}">Список пользоватлей</a></li>
+        <li class="active">Добавление / изменение пользователя</li>
     </ol>
 {% endblock %}
 

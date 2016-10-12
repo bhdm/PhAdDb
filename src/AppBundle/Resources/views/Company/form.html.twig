@@ -1,10 +1,12 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Добавление/Изменение организации{% endblock %}
+
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
-        <li><a href="{{ path('company_list') }}">Список компаний</a></li>
-        <li class="active">Добавление / изменение компании</li>
+        <li><a href="{{ path('company_list') }}">Список организаций</a></li>
+        <li class="active">Добавление / изменение организации</li>
     </ol>
 {% endblock %}
 

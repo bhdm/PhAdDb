@@ -1,5 +1,15 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Добавление / изменение издания{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('magazine_list') }}">Список изданий</a></li>
+        <li class="active">Добавление / изменение издания</li>
+    </ol>
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/themes/base/jquery-ui.css') }}">

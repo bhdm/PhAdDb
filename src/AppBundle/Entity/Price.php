@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -75,12 +76,22 @@ class Price
      */
     private $nds;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Price", mappedBy="price")
+     */
+    private $goods;
 
 
     public function __construct()
     {
         $this->color = false;
+        $this->goodsr = new ArrayCollection();
         $this->nds = false;
+    }
+
+    public function __toString()
+    {
+        return $this->getMagazine().' '.$this->getFormat().' '.$this->getPrice().'руб ';
     }
 
     /**
@@ -227,6 +238,38 @@ class Price
     public function setNds($nds)
     {
         $this->nds = $nds;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getGoodsr()
+    {
+        return $this->goodsr;
+    }
+
+    /**
+     * @param ArrayCollection $goodsr
+     */
+    public function setGoodsr($goodsr)
+    {
+        $this->goodsr = $goodsr;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoods()
+    {
+        return $this->goods;
+    }
+
+    /**
+     * @param mixed $goods
+     */
+    public function setGoods($goods)
+    {
+        $this->goods = $goods;
     }
 
 

@@ -50,6 +50,11 @@ class Good
      */
     private $publications;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Price", inversedBy="goods")
+     */
+    private $price;
+
     public function __construct()
     {
         $this->designs = new ArrayCollection();
@@ -142,6 +147,23 @@ class Good
     {
         $this->publications = $publications;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
 
 
 }

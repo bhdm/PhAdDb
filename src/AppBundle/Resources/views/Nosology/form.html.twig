@@ -1,5 +1,15 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Добавление / изменение нозологии{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('nosology_list') }}">Список нозологий</a></li>
+        <li class="active">Добавление / изменение нозологии</li>
+    </ol>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">

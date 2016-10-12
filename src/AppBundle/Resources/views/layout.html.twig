@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <title>{% block title %}PhAdDb Planer{% endblock %}</title>
     <meta charset="utf-8" />
     <meta name="robots" content="index, follow"/>
     {% block stylesheets %}
@@ -23,7 +24,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
 //            $('select[multiple]').multiselect();
-                $("select").chosen({disable_search_threshold: 10});
+                $("select").chosen({disable_search_threshold: 10, no_results_text: "По запросу ничего не найдено"});
             });
         </script>
     {% endblock %}
@@ -33,13 +34,13 @@
     {% block fullcontent %}
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="#">Planer</a></li>
+                <li class="sidebar-brand"><a href="#"><span style="text-transform: none">PhAdDb Planner</span></a></li>
                 <li>&nbsp;</li>
                 <li>&nbsp;</li>
                 <li><a href="{{ path('format_list') }}">Форматы</a></li>
-                <li><a href="{{ path('good_list') }}">Товары</a></li>
                 <li><a href="{{ path('magazine_list') }}">Издания</a></li>
-                <li><a href="{{ path('price_list') }}">Цены</a></li>
+                <li><a href="{{ path('price_list') }}">Прайс-листы</a></li>
+                <li><a href="{{ path('good_list') }}">Рекламные модули</a></li>
                 <li><a href="{{ path('mediaplan_list') }}">Медиапланы</a></li>
                 {% if is_granted('ROLE_ADMIN') %}
                     <li><hr /></li>

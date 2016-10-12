@@ -1,5 +1,15 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Добавление / изменение издательства{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path('publishing_house_list') }}">Список издательств</a></li>
+        <li class="active">Добавление / изменение издательства</li>
+    </ol>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-xs-8">

@@ -1,9 +1,11 @@
 {% extends '@App/layout.html.twig' %}
 
+{% block title %}Список прайс-листов{% endblock %}
+
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="#">Главная</a></li>
-        <li class="active">Список цен</li>
+        <li class="active">Прайс-листы</li>
         {% if magazine != null %}
             <li>{{ magazine.title }}</li>
         {% endif %}
