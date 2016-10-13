@@ -19,6 +19,7 @@ class UserType extends AbstractType
             ->add('firstName', null, ['label' => 'Имя'])
             ->add('surName', null, ['label' => 'Отчество'])
             ->add('email', null, ['label' => 'E-mail'])
+            ->add('post', null, ['label' => 'Должность'])
         ;
     }
     

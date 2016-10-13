@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -24,6 +25,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastName", type="string")
+     * @Assert\NotBlank(message="Данное поле обязательно для заполнения")
      */
     protected $lastName;
 
@@ -31,6 +33,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="firstName", type="string")
+     * @Assert\NotBlank(message="Данное поле обязательно для заполнения")
      */
     protected $firstName;
 
@@ -40,6 +43,15 @@ class User extends BaseUser
      * @ORM\Column(name="surName", type="string", nullable=true)
      */
     protected $surName;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="post", type="string")
+     * @Assert\NotBlank(message="Данное поле обязательно для заполнения")
+     */
+    protected $post;
 
 
 
@@ -121,4 +133,22 @@ class User extends BaseUser
         }
         return false;
     }
+
+    /**
+     * @return string
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param string $post
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+    }
+
+
 }
