@@ -47,6 +47,17 @@ class UserController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $item->setUsername($item->getEmail());
+
+                $password = $this->get('security.password_encoder')->encodePassword($item, $item->getPassword());
+                $item->setPassword($password);
+
+                if ($request->request->get('app_user_registration')['admin'] == 1){
+                    $item->setRoles(array(['ROLE_USER','ROLE_ADMIN']));
+                }else{
+                    $item->setRoles(array(['ROLE_USER']));
+                }
+
                 $em->persist($item);
                 $em->flush();
                 return $this->redirect($this->generateUrl('user_list'));
@@ -79,7 +90,8 @@ class UserController extends Controller
         }
         return $this->render('@App/User/form.html.twig',
             array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'isadmin' => $item->isAdmin()
             )) ;
     }
 

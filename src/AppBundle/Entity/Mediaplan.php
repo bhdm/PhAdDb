@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Mediaplan
@@ -33,6 +34,7 @@ class Mediaplan
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $year;
 
@@ -43,31 +45,37 @@ class Mediaplan
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $price;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $budget;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $sale;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $commission;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $interalBudget;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $interalSale;
 

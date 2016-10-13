@@ -14,7 +14,20 @@
     <div class="row">
         <div class="col-xs-8">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.plainPassword) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.surName) }}
+            <div class="form-group">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="app_user_registration_admin" name="app_user_registration[admin]" value="1" {{ isadmin == true ? 'checked' : '' }}> Администратор</label>
+                    </div>
+                </div>
+            </div>
             {{ form_end(form) }}
         </div>
     </div>

@@ -28,7 +28,8 @@ class Price
      * @var int
      *
      * @ORM\Column(name="year", type="integer")
-    * @Assert\NotBlank(message="Год обязателен для заполнения")
+     * @Assert\NotBlank(message="Год обязателен для заполнения")
+     * @Assert\Regex("/^[0-9]+$/")
      */
     private $year;
 
@@ -37,6 +38,7 @@ class Price
      *
      * @ORM\Column(name="price", type="integer")
      * @Assert\NotBlank(message="Цена обязательна для заполнения")
+     * @Assert\Regex("/^[0-9.]+$/")
      */
     private $price;
 

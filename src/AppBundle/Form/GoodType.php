@@ -17,7 +17,7 @@ class GoodType extends AbstractType
         $builder
             ->add('title', null, ['label' => 'Название'])
             ->add('company', null, ['label' => 'Организация', 'attr'=> ['data-placeholder' => 'Выберите организацию']])
-            ->add('price', null, ['label' => 'Прайс лист', 'attr'=> ['data-placeholder' => 'Выберите позицию из прайс листа']])
+            ->add('price', null, ['label' => 'Прайс-лист', 'attr'=> ['data-placeholder' => 'Выберите позицию из прайс-иста']])
         ;
     }
     

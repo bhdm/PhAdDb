@@ -3,6 +3,7 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -20,10 +21,10 @@ class RegistrationFormType extends AbstractType
         $builder->add('lastName', null, ['label' => 'Фамилия']);
         $builder->add('firstName', null, ['label' => 'Имя']);
         $builder->add('surName', null, ['label' => 'Отчество']);
-        $builder->add('roles', ChoiceType::class, [
-            'label' => 'Права',
-            'choices' => ['Администратор' => 'ROLE_ADMIN','Пользователь' => 'ROLE_USER']
-        ]);
+//        $builder->add('roles', ChoiceType::class, [
+//            'label' => 'Права',
+//            'choices' => ['Администратор' => 'ROLE_ADMIN','Пользователь' => 'ROLE_USER']
+//        ]);
 
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
@@ -33,6 +34,8 @@ class RegistrationFormType extends AbstractType
             'first_options'  => array('label' => 'Пароль'),
             'second_options' => array('label' => 'Повторите пароль'),
         ));
+
+//        $builder->add('admin', CheckboxType::class, ['label' => 'Администратор', 'mapped' => false, 'required' => false]);
     }
 
     public function getParent()
