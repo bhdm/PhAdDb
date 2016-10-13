@@ -31,11 +31,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h4 class="modal-title">Вход</h4>
+                    <h4 class="modal-title">PhAdDb Planner :: Авторизация</h4>
                     {% if error %}
                         <div class="alert alert-danger alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Вы ввели не правильный email или  пароль.
+                            Вы ввели неправильный email или  пароль.
                         </div>
                     {% endif %}
                     <form action="{{ path("fos_user_security_check") }}" method="post" id="login" class="form-horizontal">
@@ -55,7 +55,7 @@
                         <br />
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2 text-right">
-                                <a href="{{ path('fos_user_resetting_request') }}" style="float: left">Забыл пароль</a>
+                                <a href="{{ path('fos_user_resetting_request') }}" style="float: left">Восстановление пароля</a>
                                 <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Войти" />
                             </div>
                         </div>
