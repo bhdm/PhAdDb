@@ -65,7 +65,8 @@ class UserController extends Controller
         }
         return $this->render('@App/User/form.html.twig',
             array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'isadmin' => null
             )) ;
     }
 
