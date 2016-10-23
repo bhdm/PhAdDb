@@ -14,9 +14,113 @@
     <div class="row">
         <div class="col-xs-8">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_row(form.company) }}
+            {{ form_row(form.contractNumber) }}
+            {{ form_row(form.magazine) }}
+            {{ form_row(form.idn) }}
+            {{ form_row(form.year) }}
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-4">
+                    <h4 class="title">Рекламные позиции</h4>
+                    <ul class="goods" data-prototype="{{ form_widget(form.goods.vars.prototype)|e('html_attr') }}">
+                        {% for good in form.goods %}
+                            <li>{{ form_row(good.title) }}</li>
+                            <li>{{ form_row(good.price) }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {{ form_row(form.price) }}
+
             {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        ul.goods{
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+        ul.goods li{
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+        .right{
+            float: right;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+
+            var $collectionHolder  = $('ul.goods');
+
+            $collectionHolder.find('li').each(function() {
+                addGoodFormDeleteLink($(this));
+            });
+
+            var $addGoodLink = $('<a href="#" class="add_good_link btn btn-primary">Добавить рекламную позицию</a>');
+            var $newLinkLi = $('<li></li>').append($addGoodLink);
+
+            function addGoodFormDeleteLink($goodFormLi) {
+                var $removeFormA = $('<a href="#" class="text-danger right">Удалить модуль</a>');
+                $goodFormLi.append($removeFormA);
+
+                $removeFormA.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // remove the li for the good form
+                    $goodFormLi.remove();
+                });
+            }
+
+            function addGoodForm($collectionHolder, $newLinkLi) {
+                // Get the data-prototype explained earlier
+                var prototype = $collectionHolder.data('prototype');
+
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form in the page in an li, before the "Add a good" link li
+                var $newFormLi = $('<li></li>').append(newForm);
+                $newLinkLi.before($newFormLi);
+                addGoodFormDeleteLink($newFormLi);
+            }
+
+            jQuery(document).ready(function() {
+                // Get the ul that holds the collection of goods
+                $collectionHolder = $('ul.goods');
+
+                // add the "add a good" anchor and li to the goods ul
+                $collectionHolder.append($newLinkLi);
+
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+                $addGoodLink.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // add a new good form (see next code block)
+                    addGoodForm($collectionHolder, $newLinkLi);
+                });
+            });
+        })
+    </script>
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,10 +18,18 @@ class MediaplanType extends AbstractType
         $builder
             ->add('company', null, ['label' => 'Компания', 'attr' => ['data-placeholder' => 'Выберите компанию']])
             ->add('contractNumber', null, ['label' => '№ договора'])
+
             ->add('magazine', null, ['label' => 'Издание', 'attr' => ['data-placeholder' => 'Выберите издание']])
             ->add('idn', null, ['label' => 'Ид'])
             ->add('year', null, ['label' => 'Год'])
-//            ->add('months', null, ['label' => 'Год'])
+
+            ->add('goods', CollectionType::class, [
+                'entry_type' => GoodType::class,
+                'allow_add'    => true,
+                'allow_delete'    => true,
+                'label' => 'Рекламные модули'
+            ])
+
             ->add('price', null, ['label' => 'Стоимость (без НДС)'])
             ->add('budget', null, ['label' => 'Бюджет'])
             ->add('sale', null, ['label' => 'Скидка (в %)'])

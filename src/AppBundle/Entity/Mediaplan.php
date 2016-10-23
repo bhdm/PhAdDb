@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -89,6 +90,11 @@ class Mediaplan
      */
     private $company;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Good", mappedBy="mediaplan")
+     */
+    private $goods;
+
     public function __toString()
     {
         return $this->getMagazine()->getTitle().'';
@@ -96,6 +102,7 @@ class Mediaplan
 
     public function __construct()
     {
+        $this->goods = new ArrayCollection();
         $this->months = array(
             '1' => 0,
             '2' => 0,
@@ -322,6 +329,30 @@ class Mediaplan
             $sum += $m;
         }
         return $sum;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoods()
+    {
+        return $this->goods;
+    }
+
+    /**
+     * @param mixed $goods
+     */
+    public function setGoods($goods)
+    {
+        $this->goods = $goods;
+    }
+
+    public function addGood($good){
+        $this->goods->add($good);
+    }
+
+    public function removeGood($good){
+        $this->goods->removeElement($good);
     }
 
 }

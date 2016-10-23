@@ -27,7 +27,7 @@ class Good
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank(message="Название товара обязательно для заполнения")
+     * @Assert\NotBlank(message="Название рекламного модуля обязательно для заполнения")
      */
     private $title;
 
@@ -54,6 +54,17 @@ class Good
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Price", inversedBy="goods")
      */
     private $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Mediaplan", inversedBy="goods")
+     */
+    private $mediaplan;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="месяц обязательно для заполнения")
+     */
+    private $month;
 
     public function __construct()
     {
@@ -162,6 +173,38 @@ class Good
     public function setPrice($price)
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaplan()
+    {
+        return $this->mediaplan;
+    }
+
+    /**
+     * @param mixed $mediaplan
+     */
+    public function setMediaplan($mediaplan)
+    {
+        $this->mediaplan = $mediaplan;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMonth()
+    {
+        return $this->month;
+    }
+
+    /**
+     * @param mixed $month
+     */
+    public function setMonth($month)
+    {
+        $this->month = $month;
     }
 
 
