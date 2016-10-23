@@ -14,7 +14,13 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/themes/base/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/jquery-ui/themes/base/theme.css') }}">
+    <style>
+        .point{
+            cursor: pointer;
+        }
+    </style>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js') }}"></script>
@@ -60,14 +66,32 @@
                 },
                 minLength: 2,
                 select: function( event, ui ) {
-                    $( ".brand").val(ui.item);
+                    var num  = $('.spreadlist .row').length;
+                    $('.spreadlist').append('<div class="row"><div class="col-sm-5 col-sm-offset-4">'+ui.item.value+'</div>' +
+                            '<div class="col-sm-2"><span class="glyphicon glyphicon-remove point text-danger"></span></div>' +
+                            '<input type="hidden" name="spread['+num+']" value="'+ui.item.value+'"></div>');
+                    $('#magazine_spread').val('');
                 },
                 open: function() {
                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
                 },
                 close: function() {
                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                    $('#magazine_spread').val('');
                 }
+            });
+            
+            $('#add-spread').click(function () {
+                var num  = $('.spreadlist .row').length;
+                $('.spreadlist').append('<div class="row"><div class="col-sm-5 col-sm-offset-4">'+$('#magazine_spread').val()+'</div>' +
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-remove point text-danger"></span></div>' +
+                        '<input type="hidden" name="spread['+num+']" value="'+$('#magazine_spread').val()+'"></div>');
+                $('#magazine_spread').val('');
+            });
+
+            $('body').on("click", ".point", function () {
+                console.log($(this).parent().parent());
+                $(this).parent().parent().remove();
             });
         })
     </script>
@@ -77,7 +101,40 @@
     <div class="row">
         <div class="col-xs-8">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_row(form.house) }}
+            {{ form_row(form.format) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.circulation) }}
+            {{ form_row(form.periodicity) }}
+            {{ form_row(form.nosologies) }}
+            {{ form_row(form.bak) }}
+            {{ form_row(form.impactFactor) }}
+            {{ form_row(form.citationSystem) }}
+            {{ form_row(form.mainEditor) }}
+            {{ form_row(form.audience) }}
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label required" for="magazine_spread">Распространение</label>
+                <div class="col-sm-5">
+                    <input type="text" id="magazine_spread" name="" class="spread form-control ui-autocomplete-input" autocomplete="off">
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary" id="add-spread"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>
+            <div class="spreadlist" >
+                {% if spreads is defined %}
+                    {% for k,s in spreads %}
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-4">{{ s.title }}</div>
+                            <div class="col-sm-2"><span class="glyphicon glyphicon-remove point text-danger"></span></div>
+                            <input type="hidden" name="spread[{{ k }}]" value="{{ s.title }}"></div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br />
+            <br />
+
             {{ form_end(form) }}
         </div>
     </div>

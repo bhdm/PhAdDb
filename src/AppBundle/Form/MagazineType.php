@@ -36,7 +36,7 @@ class MagazineType extends AbstractType
             ->add('impactFactor', null, ['label' => 'Импакт-фактор издания'])
             ->add('citationSystem', null, ['label' => 'Международные системы цитирования'])
             ->add('mainEditor', null, ['label' => 'ФИО, регалии Главного редактора'])
-//            ->add('spread', TextType::class , ['label' => 'Распространение', 'attr' => ['class' => 'spread']])
+//            ->add('spread', TextType::class , ['label' => 'Распространение', 'attr' => ['class' => 'spread multiple']])
             ->add('audience', null, ['label' => 'Аудитория издания'])
 
         ;

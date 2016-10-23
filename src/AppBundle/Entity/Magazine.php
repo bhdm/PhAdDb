@@ -315,6 +315,14 @@ class Magazine
         return $this->spread;
     }
 
+    public function addSpread($spread){
+        $this->spread->add($spread);
+    }
+
+    public function removeSpread($spread){
+        $this->spread->removeElement($spread);
+    }
+
     /**
      * @param mixed $spread
      */

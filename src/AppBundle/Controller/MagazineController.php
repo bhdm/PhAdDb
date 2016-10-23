@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Magazine;
+use AppBundle\Entity\Spread;
 use AppBundle\Form\MagazineType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -53,7 +55,23 @@ class MagazineController extends Controller
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $em->persist($item);
+                $em->flush($item);
+                $em->refresh($item);
+                $spreads = $request->request->get('spread');
+                foreach ($spreads as $s){
+                    $spread = $this->getDoctrine()->getRepository('AppBundle:Spread')->findOneByTitle($s);
+                    if ($spread == null){
+                        $spread = new Spread();
+                        $spread->setTitle($s);
+                        $em->persist($spread);
+                        $em->flush($spread);
+                        $em->refresh($spread);
+
+                    }
+                    $item->addSpread($spread);
+                }
                 $em->flush();
+
                 return $this->redirect($this->generateUrl('magazine_list'));
             }
         }
@@ -77,14 +95,31 @@ class MagazineController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
-                $em->persist($item);
+                $spreads = $request->request->get('spread');
+                foreach ($item->getSpread() as $s){
+                    $item->removeSpread($s);
+                }
                 $em->flush();
+                foreach ($spreads as $s){
+                    $spread = $this->getDoctrine()->getRepository('AppBundle:Spread')->findOneByTitle($s);
+                    if ($spread == null){
+                        $spread = new Spread();
+                        $spread->setTitle($s);
+                        $em->persist($spread);
+                        $em->flush($spread);
+                        $em->refresh($spread);
+                    }
+                    $item->getSpread()->add($spread);
+                }
+                $em->flush($item);
+                $em->refresh($item);
                 return $this->redirect($this->generateUrl('magazine_list'));
             }
         }
         return $this->render('@App/Magazine/form.html.twig',
             array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'spreads' => $item->getSpread()
             )) ;
     }
 
