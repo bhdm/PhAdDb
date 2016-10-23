@@ -1,0 +1,36 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block title %}Список рекламных модулей{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li class="active">Список геопозиций</li>
+        <div style="float: right" class="btn-add">
+            <a href="{{ path('spread_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
+        </div>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover table-custom">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th></th>
+        </tr>
+        {% for item in pagination %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td class="setting">
+                    <a href="{{ path('spread_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
+                    <button class="btn-xs btn-danger" data-href="{{ path('spread_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}
