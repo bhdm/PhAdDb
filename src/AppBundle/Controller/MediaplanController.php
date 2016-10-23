@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Mediaplan;
 use AppBundle\Form\MediaplanType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -76,6 +77,12 @@ class MediaplanController extends Controller
     public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $item = $this->getDoctrine()->getRepository('AppBundle:Mediaplan')->find($id);
+
+        $originalGoods = new ArrayCollection();
+        foreach ($item->getGoods() as $good) {
+            $originalGoods->add($good);
+        }
+
         $form = $this->createForm(MediaplanType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
         $formData = $form->handleRequest($request);
@@ -83,8 +90,17 @@ class MediaplanController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
-                $em->persist($item);
+
+                foreach ($originalGoods as $good) {
+                    if (false === $item->getGoods()->contains($good)) {
+                        $good->setMediaplan(null);
+                        $em->remove($good);
+                    }
+                }
+
                 $em->flush();
+                $em->flush($item);
+                $em->refresh($item);
                 return $this->redirect($this->generateUrl('mediaplan_list'));
             }
         }

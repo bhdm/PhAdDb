@@ -27,6 +27,7 @@ class MediaplanType extends AbstractType
                 'entry_type' => GoodType::class,
                 'allow_add'    => true,
                 'allow_delete'    => true,
+                'auto_initialize' => true,
                 'label' => 'Рекламные модули'
             ])
 

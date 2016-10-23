@@ -91,13 +91,13 @@ class Mediaplan
     private $company;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Good", mappedBy="mediaplan")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Good", mappedBy="mediaplan", cascade={"persist"})
      */
     private $goods;
 
     public function __toString()
     {
-        return $this->getMagazine()->getTitle().'';
+        return $this->getContractNumber();
     }
 
     public function __construct()
@@ -348,7 +348,9 @@ class Mediaplan
     }
 
     public function addGood($good){
-        $this->goods->add($good);
+        if (!$this->goods->contains($good)) {
+            $this->goods->add($good);
+        }
     }
 
     public function removeGood($good){

@@ -57,8 +57,8 @@
     <br />
     <table class="table table-hover table-custom">
         <tr>
-            <th>Издание</th>
-            <th>Ид</th>
+            <th>Организация</th>
+            <th>Номер договора</th>
             <th>Год</th>
             <th>Периодичность<br />Тираж</th>
             <th>Распростр.</th>
@@ -68,13 +68,14 @@
         </tr>
         {% for item in pagination %}
             <tr>
-                <td>{{ item }}</td>
+                <td>{{ item.company }}</td>
+                <td>{{ item.contractNumber }}</td>
                 <td>{{ item.idn }}</td>
                 <td>{{ item.year }}</td>
                 <td>{{ item.magazine.periodicity }} <br />{{ item.magazine.circulation }}</td>
                 <td>{{ item.magazine.spread | join(', ') }}</td>
                 <td>{{ item.magazine.format }}</td>
-                <td>{{ item.getCount() }}</td>
+                <td>{{ item.goods | length }}</td>
                 <td class="setting" style="width: 300px">
                     <a href="{{ path('mediaplan_print', {'id' : item.id} ) }}"><button class="btn-xs btn-success"><span class="glyphicon glyphicon-print"></span> Печать</button></a>
                     <a href="{{ path('mediaplan_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
