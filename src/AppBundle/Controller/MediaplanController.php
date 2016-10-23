@@ -122,6 +122,22 @@ class MediaplanController extends Controller
             ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
             ->setKeywords("office 2005 openxml php")
             ->setCategory("Test result file");
+
+        // add logo medimform
+        $objDrawing = new \PHPExcel_Worksheet_Drawing();    //create object for Worksheet drawing
+        $objDrawing->setName('');
+        $objDrawing->setDescription('');
+        $signature = $this->get('kernel')->getRootDir() . '/../web/bundles/app/images/logo.gif';    //Path to signature .jpg file
+        $objDrawing->setPath($signature);
+        $objDrawing->setOffsetX(25);                       //setOffsetX works properly
+        $objDrawing->setOffsetY(10);                       //setOffsetY works properly
+        $objDrawing->setCoordinates('A1');          //set image to cell
+        $objDrawing->setWidth(150);                 //set width, height
+        $objDrawing->setHeight(38);
+
+        $objDrawing->setWorksheet($phpExcelObject->getActiveSheet());
+
+
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A2', 'Клиент: '.$plan->getCompany());
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A3', 'Договор: '.$plan->getContractNumber());
 
