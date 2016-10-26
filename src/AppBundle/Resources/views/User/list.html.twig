@@ -30,7 +30,7 @@
                 <td>{{ item.email }}</td>
                 <td>{{ item.roles | join(', ') }}</td>
                 <td class="setting">
-                    <a href="{{ path('user_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
+                    <a href="{{ path('user_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('user_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
                 </td>
             </tr>

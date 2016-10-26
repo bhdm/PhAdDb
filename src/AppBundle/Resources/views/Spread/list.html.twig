@@ -24,7 +24,7 @@
                 <td>{{ item.id }}</td>
                 <td>{{ item.title }}</td>
                 <td class="setting">
-                    <a href="{{ path('spread_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Изменить</button></a>
+                    <a href="{{ path('spread_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('spread_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
                 </td>
             </tr>
