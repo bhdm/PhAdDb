@@ -19,20 +19,23 @@
             {{ form_row(form.magazine) }}
             {{ form_row(form.idn) }}
             {{ form_row(form.year) }}
+            {{ form_row(form.sale) }}
+            {{ form_row(form.commission) }}
+            {{ form_row(form.interalSale) }}
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-4">
                     <h4 class="title">Рекламные позиции</h4>
                     <ul class="goods" data-prototype="{{ form_widget(form.goods.vars.prototype)|e('html_attr') }}">
                         {% for good in form.goods %}
-                            <li>{{ form_row(good.title) }}</li>
-                            <li>{{ form_row(good.price) }}</li>
+                            <li>
+                                {{ form_row(good.title) }}
+                                {{ form_row(good.month) }}
+                                {{ form_row(good.price) }}
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
-
-            {{ form_row(form.price) }}
-
             {{ form_end(form) }}
         </div>
     </div>
@@ -66,7 +69,7 @@
                 addGoodFormDeleteLink($(this));
             });
 
-            var $addGoodLink = $('<a href="#" class="add_good_link btn btn-primary">Добавить рекламную позицию</a>');
+            var $addGoodLink = $('<a href="#" class="add_good_link btn btn-info">Добавить рекламную позицию</a>');
             var $newLinkLi = $('<li></li>').append($addGoodLink);
 
             function addGoodFormDeleteLink($goodFormLi) {

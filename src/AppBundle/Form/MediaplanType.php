@@ -31,11 +31,11 @@ class MediaplanType extends AbstractType
                 'label' => 'Рекламные модули'
             ])
 
-            ->add('price', null, ['label' => 'Стоимость (без НДС)'])
-            ->add('budget', null, ['label' => 'Бюджет'])
+//            ->add('price', null, ['label' => 'Стоимость (без НДС)'])
+//            ->add('budget', null, ['label' => 'Бюджет'])
             ->add('sale', null, ['label' => 'Скидка (в %)'])
             ->add('commission', null, ['label' => 'Агентская коммисия (в %)'])
-            ->add('interalBudget', null, ['label' => 'Внутренний бюджет'])
+//            ->add('interalBudget', null, ['label' => 'Внутренний бюджет'])
             ->add('interalSale', null, ['label' => 'Внутренняя скидка (в %)'])
         ;
     }
