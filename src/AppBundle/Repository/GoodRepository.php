@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class GoodRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByMonth($mediaplanId, $magazineId){
+        $qb = $this->createQueryBuilder('m');
+        $qb->select('m');
+        $qb
+            ->leftJoin('m.prices', 'price')
+            ->leftJoin('price.goods', 'good')
+            ->leftJoin('good.mediaplan', 'mediaplan')
+            ->where('mediaplan.id = :mediaplanId')
+            ->setParameter(':mediaplanId', $mediaplanId )
+            ->groupBy('m.id')
+            ->orderBy('m.title', 'ASC');
+        $result = $qb->getQuery()->getResult();
+        return $result;
+    }
 }

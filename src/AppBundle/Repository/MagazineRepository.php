@@ -42,4 +42,19 @@ class MagazineRepository extends \Doctrine\ORM\EntityRepository
         $result = $qb->getQuery()->getResult();
         return $result;
     }
+
+    public function findMagazines($mediaplanId){
+        $qb = $this->createQueryBuilder('m');
+        $qb->select('m');
+        $qb
+            ->leftJoin('m.prices', 'price')
+            ->leftJoin('price.goods', 'good')
+            ->leftJoin('good.mediaplan', 'mediaplan')
+            ->where('mediaplan.id = :mediaplanId')
+            ->setParameter(':mediaplanId', $mediaplanId )
+            ->groupBy('m.id')
+            ->orderBy('m.title', 'ASC');
+        $result = $qb->getQuery()->getResult();
+        return $result;
+    }
 }

@@ -79,7 +79,7 @@ class Price
     private $nds;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Price", mappedBy="price")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Good", mappedBy="price")
      */
     private $goods;
 

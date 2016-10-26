@@ -284,45 +284,56 @@ class MediaplanController extends Controller
         $phpExcelObject->getActiveSheet()->getColumnDimension('AH')->setWidth(15);
 
 
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A5', $plan->getMagazine()->getHouse());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B5', $plan->getIdn());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C5', $plan->getMagazine()->getCirculation());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D5', $plan->getMagazine()->getPeriodicity());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F5', $plan->getMagazine()->getFormat());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G5', ($plan->getMagazine()->getBak() == true? 'Да' : 'Нет'));
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('K5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('L5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('M5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('N5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('O5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('P5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Q5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('R5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('S5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('T5', '');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U5', $plan->getCount());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V5', $plan->getPrice());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W5', $plan->getPrice()*$plan->getCount());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X5', $plan->getSale());
-        $y = $plan->getPrice()*$plan->getCount()*(100-$plan->getSale())/100;
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y5', $y);
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z5', '18,00%');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA5', $y+($y*1.18));
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB5', $y*0.05);
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC5', $y*0.05*1.18);
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD5', ($y+($y*1.18))+($y*0.05*1.18));
+//      Получаем список Изданий в данном медиаплане
+        $mediaplanMagazines = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findMagazines($id);
 
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE5', $plan->getInteralBudget());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF5', $plan->getInteralSale());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG5', $plan->getInteralBudget()*(100-$plan->getInteralSale())/100);
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH5', $y-($plan->getInteralBudget()*(100-$plan->getInteralSale())/100));
+        $row = 5;
+        foreach ($mediaplanMagazines as $magazine){
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$row, $magazine->getHouse());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, $plan->getIdn());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C'.$row, $magazine->getCirculation());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D'.$row, $magazine->getPeriodicity());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F'.$row, $magazine->getFormat());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G'.$row, ($magazine->getBak() == true? 'Да' : 'Нет'));
 
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC6', 'Общий бюджет:');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD6', ($y+($y*1.18))+($y*0.05*1.18));
+//          Получаем в0се модули на данный месяц на данный журнал
+            $modules = $this->getDoctrine()->getRepository('AppBundle:Good')->findByMonth($id, $magazine->getId());
+
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('K'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('L'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('M'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('N'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('O'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('P'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Q'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('R'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('S'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('T'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U'.$row, $plan->getCount());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V'.$row, $plan->getPrice());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W'.$row, $plan->getPrice()*$plan->getCount());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X'.$row, $plan->getSale());
+            $y = $plan->getPrice()*$plan->getCount()*(100-$plan->getSale())/100;
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y'.$row, $y);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z'.$row, '18,00%');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA'.$row, $y+($y*1.18));
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB'.$row, $y*0.05);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC'.$row, $y*0.05*1.18);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD'.$row, ($y+($y*1.18))+($y*0.05*1.18));
+
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE'.$row, $plan->getInteralBudget());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF'.$row, $plan->getInteralSale());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG'.$row, $plan->getInteralBudget()*(100-$plan->getInteralSale())/100);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH'.$row, $y-($plan->getInteralBudget()*(100-$plan->getInteralSale())/100));
+            $row ++;
+        }
+
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC'.$row, 'Общий бюджет:');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD'.$row, ($y+($y*1.18))+($y*0.05*1.18));
 
 
         $phpExcelObject->getActiveSheet()->setTitle('Simple');
