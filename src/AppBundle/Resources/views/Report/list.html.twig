@@ -1,0 +1,52 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block title %}Отчет по {{ user.fullName }}{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="#">Главная</a></li>
+        <li class="active">Отчеты</li>
+        <li>{{ user.fullName }}</li>
+    </ol>
+
+{% endblock %}
+
+{% block content %}
+    <label>Отчет {{ user.fullName }}</label>
+    <br />
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <table class="table table-hover table-custom">
+                <caption>{{ user.fullName }} создал {{ user.companies | length }} компаний</caption>
+                <tr>
+                    <th>Название</th>
+                    <th>Дата создания</th>
+                </tr>
+                {% for c in user.companies %}
+                    <tr>
+                        <td>{{ c }}</td>
+                        <td>{{ c.created | date("d.m.Y") }}</td>
+                        <td><a href="{{ path('mediaplan_list', { 'companyId' : c.id }) }}"><button type="button" class="btn btn-primary">Медиапланы</button></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <table class="table table-hover table-custom">
+                <caption>{{ user.fullName }} создал {{ user.mediaplans | length }} медиапланов</caption>
+                <tr>
+                    <th>Номер</th>
+                    <th>Дата создания</th>
+                </tr>
+                {% for c in user.mediaplans %}
+                    <tr>
+                        <td>{{ c }}</td>
+                        <td>{{ c.created | date("d.m.Y") }}</td>
+                        <td><a href="{{ path('mediaplan_edit', { 'id' : c.id }) }}"><button type="button" class="btn btn-primary">Медиаплан</button></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

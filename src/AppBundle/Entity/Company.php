@@ -82,6 +82,20 @@ class Company
      */
     private $user;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updated;
+
 
     public function __toString()
     {
@@ -90,6 +104,8 @@ class Company
 
     public function __construct()
     {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
         $this->goods = new ArrayCollection();
         $this->mediaplans = new ArrayCollection();
     }
@@ -272,6 +288,11 @@ class Company
         $this->user = $user;
     }
 
-
+    /**
+     * @ORM\PreFlush
+     */
+    public function preFlush(){
+        $this->updated = new \DateTime();
+    }
 }
 

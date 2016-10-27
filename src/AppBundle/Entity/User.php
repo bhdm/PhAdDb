@@ -129,6 +129,10 @@ class User extends BaseUser
         return $this->surName;
     }
 
+    public function getFullName(){
+        return $this->lastName.' '.$this->firstName.' '.$this->surName;
+    }
+
     /**
      * @param string $surName
      */
@@ -161,6 +165,39 @@ class User extends BaseUser
     {
         $this->post = $post;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCompanies()
+    {
+        return $this->companies;
+    }
+
+    /**
+     * @param mixed $companies
+     */
+    public function setCompanies($companies)
+    {
+        $this->companies = $companies;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaplans()
+    {
+        return $this->mediaplans;
+    }
+
+    /**
+     * @param mixed $mediaplans
+     */
+    public function setMediaplans($mediaplans)
+    {
+        $this->mediaplans = $mediaplans;
+    }
+
 
 
 }

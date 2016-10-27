@@ -19,7 +19,7 @@ class EmailService{
             ->setFrom('PhAdDbPlanner@gmail.com')
             ->setTo('bhd.m@ya.ru')
             ->setBody(
-                $twig->renderView(
+                $twig->render(
                     'AppBundle:Mail:notify.html.twig',
                     array(
                         'user' => $user,

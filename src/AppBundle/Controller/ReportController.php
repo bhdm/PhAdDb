@@ -23,7 +23,8 @@ class ReportController extends Controller
      */
     public function listAction(Request $request, $id)
     {
-        return array();
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
+        return array('user' => $user);
     }
 
 }

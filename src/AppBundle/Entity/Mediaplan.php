@@ -100,6 +100,20 @@ class Mediaplan
      */
     private $user;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updated;
+
     public function __toString()
     {
         return $this->getContractNumber();
@@ -107,6 +121,8 @@ class Mediaplan
 
     public function __construct()
     {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
         $this->goods = new ArrayCollection();
         $this->months = array(
             '1' => 0,
@@ -378,5 +394,11 @@ class Mediaplan
         $this->user = $user;
     }
 
+    /**
+     * @ORM\PreFlush
+     */
+    public function preFlush(){
+        $this->updated = new \DateTime();
+    }
 }
 
