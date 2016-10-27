@@ -13,13 +13,32 @@
 {% endblock %}
 
 {% block content %}
+    <label>Фильтр</label>
+    <form method="GET">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <select class="" data-placeholder="Права" name="role">
+                    <option value="null">Все</option>
+                    <option value="ROLE_ADMIN">Администратор</option>
+                    <option value="ROLE_USER">Пользователь</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+                <input type="text" class="form-control" name="s-text" style="height: 26px;" placeholder="Введите строку поиска">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-1">
+                <button class="btn-xs btn-primary" type="submit">Найти</button>
+            </div>
+        </div>
+    </form>
+    <br />
     <table class="table table-hover table-custom">
         <tr>
             <th>ID</th>
             <th>Ф.И.О.</th>
-            <th>Логин</th>
+            <th>Должность</th>
             <th>Email</th>
-            <th>Роли</th>
+            <th>Права</th>
             <th></th>
         </tr>
         {% for item in pagination %}
@@ -28,10 +47,21 @@
                 <td>{{ item.lastName }} {{ item.firstName }} {{ item.surName }}</td>
                 <td>{{ item.post }}</td>
                 <td>{{ item.email }}</td>
-                <td>{{ item.roles | join(', ') }}</td>
+                <td>
+                    {% for r in item.roles %}
+                        {% if r == 'ROLE_ADMIN' %}
+                            Администратор
+                        {% elseif r == 'ROLE_USER' %}
+                            Пользователь
+                        {% else %}
+                            r
+                        {% endif %}
+                    {% endfor %}
+                </td>
                 <td class="setting">
+                    <a href=""><button class="btn-xs btn-success"><span class="glyphicon glyphicon-signal"></span> Отчет</button></a>
                     <a href="{{ path('user_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
-                    <button class="btn-xs btn-danger" data-href="{{ path('user_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
+                    <button class="btn-xs btn-danger remove" data-toggle="modal" data-target="#confirm-delete" data-href="{{ path('user_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
                 </td>
             </tr>
         {% endfor %}

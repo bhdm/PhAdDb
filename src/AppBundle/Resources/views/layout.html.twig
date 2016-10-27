@@ -25,6 +25,10 @@
             $(document).ready(function() {
 //            $('select[multiple]').multiselect();
                 $("select").chosen({disable_search_threshold: 10, no_results_text: "По запросу ничего не найдено"});
+
+                $('#confirm-delete').on('show.bs.modal', function(e) {
+                    $('.btn-ok').attr('href', $(e.relatedTarget).attr('data-href'));
+                });
             });
         </script>
     {% endblock %}
@@ -99,5 +103,18 @@
             </div>
         </div>
     {% endblock  %}
+</div>
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Вы действительно хотите удалить элемент?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <a class="btn btn-danger btn-ok">Удалить</a>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
