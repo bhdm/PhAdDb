@@ -68,12 +68,12 @@ class Company
     private $contactPost;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Company", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Company", mappedBy="company", orphanRemoval=true, cascade={"persist", "remove", "merge"})
      */
     private $goods;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Mediaplan", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Mediaplan", mappedBy="company", orphanRemoval=true, cascade={"persist", "remove", "merge"})
      */
     private $mediaplans;
 

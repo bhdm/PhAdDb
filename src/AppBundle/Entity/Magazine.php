@@ -115,7 +115,7 @@ class Magazine
     private $updated;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Magazine", mappedBy="magazine")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Magazine", mappedBy="magazine", orphanRemoval=true, cascade={"persist", "remove", "merge"})
      */
     private $mediaplans;
 

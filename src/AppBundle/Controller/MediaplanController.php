@@ -122,9 +122,9 @@ class MediaplanController extends Controller
         $em = $this->getDoctrine()->getManager();
         $item = $em->getRepository('AppBundle:Mediaplan')->find($id);
         if ($item){
+            $this->get('app.email')->send($this->getUser(),'удалил', 'медиаплан '.$item);
             $em->remove($item);
             $em->flush();
-            $this->get('app.email')->send($this->getUser(),'удалил', 'медиаплан '.$item->getTitle());
         }
         return $this->redirect($request->headers->get('referer'));
     }

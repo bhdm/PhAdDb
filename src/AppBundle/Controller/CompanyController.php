@@ -92,11 +92,11 @@ class CompanyController extends Controller
      */
     public function removeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $item = $em->getRepository('AppBundle:Company')->find($id);
+        $item = $this->getDoctrine()->getRepository('AppBundle:Company')->findOneById($id);
         if ($item){
+            $this->get('app.email')->send($this->getUser(),'удалил', 'компанию '.$item);
             $em->remove($item);
             $em->flush();
-            $this->get('app.email')->send($this->getUser(),'удалил', 'компанию '.$item->getTitle());
         }
         return $this->redirect($request->headers->get('referer'));
     }

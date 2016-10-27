@@ -91,7 +91,7 @@ class Mediaplan
     private $company;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Good", mappedBy="mediaplan", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Good", mappedBy="mediaplan", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $goods;
 

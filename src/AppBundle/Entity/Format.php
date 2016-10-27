@@ -41,7 +41,7 @@ class Format
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Price", mappedBy="format")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Price", mappedBy="format", orphanRemoval=true, cascade={"persist", "remove", "merge"})
      */
     private $prices;
 
