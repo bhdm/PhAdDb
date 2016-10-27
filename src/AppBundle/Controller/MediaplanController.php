@@ -138,12 +138,12 @@ class MediaplanController extends Controller
         $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
 
         $phpExcelObject->getProperties()->setCreator("liuggio")
-            ->setLastModifiedBy("Giulio De Donato")
-            ->setTitle("Office 2005 XLSX Test Document")
-            ->setSubject("Office 2005 XLSX Test Document")
-            ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
-            ->setKeywords("office 2005 openxml php")
-            ->setCategory("Test result file");
+            ->setLastModifiedBy("")
+            ->setTitle("Медиаплан")
+            ->setSubject("")
+            ->setDescription("")
+            ->setKeywords("")
+            ->setCategory("");
 
         // add logo medimform
         $objDrawing = new \PHPExcel_Worksheet_Drawing();    //create object for Worksheet drawing
@@ -406,6 +406,8 @@ class MediaplanController extends Controller
 
 
 
+        $dateNow = new \DateTime();
+        $filename = $plan->getCompany().$dateNow->format('d.m.Y');
         $phpExcelObject->getActiveSheet()->setTitle('Simple');
         // Set active sheet index to the first sheet, so Excel opens this as the first sheet
         $phpExcelObject->setActiveSheetIndex(0);
@@ -417,7 +419,7 @@ class MediaplanController extends Controller
         // adding headers
         $dispositionHeader = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'stream-file.xls'
+            $filename.'.xls'
         );
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
         $response->headers->set('Pragma', 'public');
