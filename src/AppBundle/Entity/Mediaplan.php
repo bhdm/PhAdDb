@@ -95,6 +95,11 @@ class Mediaplan
      */
     private $goods;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="mediaplans")
+     */
+    private $user;
+
     public function __toString()
     {
         return $this->getContractNumber();
@@ -355,6 +360,22 @@ class Mediaplan
 
     public function removeGood($good){
         $this->goods->removeElement($good);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 
 }

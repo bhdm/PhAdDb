@@ -77,7 +77,10 @@ class Company
      */
     private $mediaplans;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="companies")
+     */
+    private $user;
 
 
     public function __toString()
@@ -251,6 +254,22 @@ class Company
     public function setContactPost($contactPost)
     {
         $this->contactPost = $contactPost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 
 

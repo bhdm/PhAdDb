@@ -24,3 +24,6 @@ services:
         tags:
             - { name: form.type }
 
+    app.email:
+        class: AppBundle\Service\EmailService
+        arguments: ["@service_container"]

@@ -47,8 +47,10 @@ class CompanyController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $item->setUser($this->getUser());
                 $em->persist($item);
                 $em->flush();
+                $this->get('app.email')->send($this->getUser(),'создал', 'компанию '.$item->getTitle());
                 return $this->redirect($this->generateUrl('company_list'));
             }
         }
@@ -74,6 +76,7 @@ class CompanyController extends Controller
                 $item = $formData->getData();
                 $em->persist($item);
                 $em->flush();
+                $this->get('app.email')->send($this->getUser(),'изменил', 'компанию '.$item->getTitle());
                 return $this->redirect($this->generateUrl('company_list'));
             }
         }
@@ -92,6 +95,7 @@ class CompanyController extends Controller
         if ($item){
             $em->remove($item);
             $em->flush();
+            $this->get('app.email')->send($this->getUser(),'удалил', 'компанию '.$item->getTitle());
         }
         return $this->redirect($request->headers->get('referer'));
     }

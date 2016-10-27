@@ -54,10 +54,22 @@ class User extends BaseUser
     protected $post;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Company", mappedBy="user")
+     */
+    private $companies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Mediaplan", mappedBy="user")
+     */
+    private $mediaplans;
+
 
     public function __construct()
     {
         parent::__construct();
+        $this->companies = new ArrayCollection();
+        $this->mediaplans = new ArrayCollection();
     }
 
     /**
