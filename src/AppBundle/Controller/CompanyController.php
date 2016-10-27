@@ -74,6 +74,7 @@ class CompanyController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $item->setUpdated(new \DateTime());
                 $em->persist($item);
                 $em->flush();
                 $this->get('app.email')->send($this->getUser(),'изменил', 'компанию '.$item->getTitle());

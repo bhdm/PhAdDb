@@ -92,6 +92,7 @@ class MediaplanController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                $item->setUpdated(new \DateTime());
 
                 foreach ($originalGoods as $good) {
                     if (false === $item->getGoods()->contains($good)) {
@@ -99,6 +100,7 @@ class MediaplanController extends Controller
                         $em->remove($good);
                     }
                 }
+
 
                 $em->flush();
                 $em->flush($item);

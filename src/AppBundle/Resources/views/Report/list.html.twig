@@ -21,11 +21,12 @@
                 <tr>
                     <th>Название</th>
                     <th>Дата создания</th>
+                    <th></th>
                 </tr>
                 {% for c in user.companies %}
                     <tr>
                         <td>{{ c }}</td>
-                        <td>{{ c.created | date("d.m.Y") }}</td>
+                        <td>{{ c.created != null ? c.created | date("d.m.Y") }}</td>
                         <td><a href="{{ path('mediaplan_list', { 'companyId' : c.id }) }}"><button type="button" class="btn btn-primary">Медиапланы</button></a></td>
                     </tr>
                 {% endfor %}
@@ -37,11 +38,12 @@
                 <tr>
                     <th>Номер</th>
                     <th>Дата создания</th>
+                    <th></th>
                 </tr>
                 {% for c in user.mediaplans %}
                     <tr>
                         <td>{{ c }}</td>
-                        <td>{{ c.created | date("d.m.Y") }}</td>
+                        <td>{{ c.created != null ? c.created | date("d.m.Y") }}</td>
                         <td><a href="{{ path('mediaplan_edit', { 'id' : c.id }) }}"><button type="button" class="btn btn-primary">Медиаплан</button></a></td>
                     </tr>
                 {% endfor %}
