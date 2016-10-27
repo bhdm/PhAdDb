@@ -155,17 +155,41 @@ class MediaplanController extends Controller
 
 
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A2', 'Клиент: '.$plan->getCompany());
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A3', 'Договор: '.$plan->getContractNumber());
+//        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A3', 'Договор: '.$plan->getContractNumber());
 
 
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A4', 'Издание');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B4', 'ИД');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C4', 'Тираж');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D4', 'Периодичность');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E4', 'Распространение');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F4', 'Формат издания');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G4', 'Статус ВАК*');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H4', 'Формат');
+
+        $phpExcelObject->getActiveSheet()->mergeCells('A3:A4');
+        $phpExcelObject->getActiveSheet()->mergeCells('B3:B4');
+        $phpExcelObject->getActiveSheet()->mergeCells('C3:C4');
+        $phpExcelObject->getActiveSheet()->mergeCells('D3:D4');
+        $phpExcelObject->getActiveSheet()->mergeCells('E3:E4');
+        $phpExcelObject->getActiveSheet()->mergeCells('F3:F4');
+        $phpExcelObject->getActiveSheet()->mergeCells('G3:G4');
+        $phpExcelObject->getActiveSheet()->mergeCells('H3:H4');
+
+        $phpExcelObject->getActiveSheet()->mergeCells('I3:T3');
+
+        $phpExcelObject->getActiveSheet()->mergeCells('U3:U4');
+        $phpExcelObject->getActiveSheet()->mergeCells('V3:V4');
+        $phpExcelObject->getActiveSheet()->mergeCells('W3:W4');
+        $phpExcelObject->getActiveSheet()->mergeCells('X3:X4');
+        $phpExcelObject->getActiveSheet()->mergeCells('Y3:Y4');
+        $phpExcelObject->getActiveSheet()->mergeCells('Z3:Z4');
+        $phpExcelObject->getActiveSheet()->mergeCells('AA3:AA4');
+        $phpExcelObject->getActiveSheet()->mergeCells('AB3:AB4');
+        $phpExcelObject->getActiveSheet()->mergeCells('AC3:AC4');
+        $phpExcelObject->getActiveSheet()->mergeCells('AD3:AD4');
+
+
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A3', 'Издание');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B3', 'ИД');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C3', 'Тираж');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D3', 'Периодичность');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E3', 'Распространение');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F3', 'Формат издания');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G3', 'Статус ВАК*');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H3', 'Формат');
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I4', 'I');
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J4', 'II');
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('K4', 'III');
@@ -178,25 +202,25 @@ class MediaplanController extends Controller
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('R4', 'X');
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('S4', 'XI');
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('T4', 'XII');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U4', 'Общее кол-во публикаций');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V4', 'Стоимость размещения, без НДС');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W4', 'Общий бюджет, без НДС');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X4', 'Скидка %');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y4', 'Бюджет после скидки, без  НДС');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z4', 'НДС 18%');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA4', 'Стоимость, включая НДС 18%');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB4', 'Агентская комиссия (5%), без НДС');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC4', 'Агентская комиссия, включая НДС 18%');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD4', 'Бюджет после скидки, включая АК, без НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U3', 'Общее кол-во публикаций');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V3', 'Стоимость размещения, без НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W3', 'Общий бюджет, без НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X3', 'Скидка %');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y3', 'Бюджет после скидки, без  НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z3', 'НДС 18%');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA3', 'Стоимость, включая НДС 18%');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB3', 'Агентская комиссия (5%), без НДС');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC3', 'Агентская комиссия, включая НДС 18%');
+        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD3', 'Бюджет после скидки, включая АК, без НДС');
 
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE4', 'Общий бюджет, без НДС');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF4', 'Скидка, %');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG4', 'Бюджет после скидки, без  НДС');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH4', 'OMI');
+//        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE4', 'Общий бюджет, без НДС');
+//        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF4', 'Скидка, %');
+//        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG4', 'Бюджет после скидки, без  НДС');
+//        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH4', 'OMI');
 
         $phpExcelObject->setActiveSheetIndex(0)->freezePane('B1');
 
-        $phpExcelObject->setActiveSheetIndex(0)->getStyle('A4:AD4')->applyFromArray(
+        $phpExcelObject->setActiveSheetIndex(0)->getStyle('A3:AD4')->applyFromArray(
             array(
                 'fill' => array(
                     'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -204,16 +228,16 @@ class MediaplanController extends Controller
                 )
             )
         );
-        $phpExcelObject->setActiveSheetIndex(0)->getStyle('AE4:AH4')->applyFromArray(
-            array(
-                'fill' => array(
-                    'type' => \PHPExcel_Style_Fill::FILL_SOLID,
-                    'color' => array('rgb' => 'FFCCCC')
-                )
-            )
-        );
-
-        $phpExcelObject->setActiveSheetIndex(0)->getStyle('A4:AH5')->applyFromArray(
+//        $phpExcelObject->setActiveSheetIndex(0)->getStyle('AE4:AH4')->applyFromArray(
+//            array(
+//                'fill' => array(
+//                    'type' => \PHPExcel_Style_Fill::FILL_SOLID,
+//                    'color' => array('rgb' => 'FFCCCC')
+//                )
+//            )
+//        );
+//
+        $phpExcelObject->setActiveSheetIndex(0)->getStyle('A3:AD4')->applyFromArray(
             array(
                 'borders' => array(
                     'allborders' => array(
@@ -232,7 +256,25 @@ class MediaplanController extends Controller
             )
         );
 
-        $phpExcelObject->getActiveSheet()->getStyle("A4:AH4")->getFont()->setBold(true);
+        $centerstyle = array(
+            'alignment' => array(
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            )
+        );
+
+        $rightstyle = array(
+            'alignment' => array(
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+            )
+        );
+
+        $phpExcelObject->getActiveSheet()->getStyle("I3:T4")->applyFromArray($centerstyle);
+        $phpExcelObject->getActiveSheet()->getStyle("F")->applyFromArray($centerstyle);
+        $phpExcelObject->getActiveSheet()->getStyle("G")->applyFromArray($centerstyle);
+        $phpExcelObject->getActiveSheet()->getStyle("H")->applyFromArray($centerstyle);
+        $phpExcelObject->getActiveSheet()->getStyle("U")->applyFromArray($centerstyle);
+
+        $phpExcelObject->getActiveSheet()->getStyle("A3:AH3")->getFont()->setBold(true);
         $phpExcelObject->getActiveSheet()->getStyle("AC6:AD6")->getFont()->setBold(true);
         $phpExcelObject->getActiveSheet()->getStyle("A2:A3")->getFont()->setBold(true);
 
@@ -285,55 +327,77 @@ class MediaplanController extends Controller
 
 
 //      Получаем список Изданий в данном медиаплане
-        $mediaplanMagazines = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findMagazines($id);
+        $mediaplanGoods = $this->getDoctrine()->getRepository('AppBundle:Good')->findGoods($id);
 
         $row = 5;
-        foreach ($mediaplanMagazines as $magazine){
+        foreach ($mediaplanGoods as $good){
+            $magazine = $good->getPrice()->getMagazine();
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I3', $plan->getYear());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$row, $magazine->getHouse());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, $plan->getIdn());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, '');
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C'.$row, $magazine->getCirculation());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D'.$row, $magazine->getPeriodicity());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E'.$row, '');
+            if (is_array($magazine->getSpread())){
+                $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E'.$row, implode(', ', $magazine->getSpread()));
+            }
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F'.$row, $magazine->getFormat());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G'.$row, ($magazine->getBak() == true? 'Да' : 'Нет'));
 
 //          Получаем в0се модули на данный месяц на данный журнал
-            $modules = $this->getDoctrine()->getRepository('AppBundle:Good')->findByMonth($id, $magazine->getId());
+            $modules = $this->getDoctrine()->getRepository('AppBundle:Good')->findByMonth($id, $good->getPrice());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H'.$row, $good->getPrice()->getFormat());
+            $modulesCount = 0;
+            foreach ($modules as $key => $months){
+                $title = '';
+                $price = '';
+                foreach ( $months as $module ) {
+                    $modulesCount ++;
+                    $title .= $module->getTitle()."\r\n";
+                    $price += $module->getPrice()->getPrice();
+                }
+                $phpExcelObject->setActiveSheetIndex(0)->setCellValue($this->convertMonthToCell($key).$row, $title);
+            }
 
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('J'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('K'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('L'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('M'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('N'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('O'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('P'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Q'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('R'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('S'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('T'.$row, '');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U'.$row, $plan->getCount());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V'.$row, $plan->getPrice());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W'.$row, $plan->getPrice()*$plan->getCount());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X'.$row, $plan->getSale());
-            $y = $plan->getPrice()*$plan->getCount()*(100-$plan->getSale())/100;
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y'.$row, $y);
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z'.$row, '18,00%');
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA'.$row, $y+($y*1.18));
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB'.$row, $y*0.05);
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC'.$row, $y*0.05*1.18);
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD'.$row, ($y+($y*1.18))+($y*0.05*1.18));
+            $phpExcelObject->getActiveSheet()->getStyle('V'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('W'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('Y'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('AA'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('AB'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('AC'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('AD'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('Z'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
+            $phpExcelObject->getActiveSheet()->getStyle('X'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00);
 
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AE'.$row, $plan->getInteralBudget());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AF'.$row, $plan->getInteralSale());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AG'.$row, $plan->getInteralBudget()*(100-$plan->getInteralSale())/100);
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AH'.$row, $y-($plan->getInteralBudget()*(100-$plan->getInteralSale())/100));
+            $phpExcelObject->setActiveSheetIndex(0)->getStyle('A'.$row.':AD'.$row)->applyFromArray(
+                array(
+                    'borders' => array(
+                        'allborders' => array(
+                            'style' => \PHPExcel_Style_Border::BORDER_THIN
+                        )
+                    )
+                )
+            );
+
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U'.$row, $modulesCount);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V'.$row, '='.$price.'/1.18');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W'.$row, '=U'.$row.'*V'.$row);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X'.$row, ($plan->getSale()/100));
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y'.$row, '=W'.$row.'*(1-X'.$row.')');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z'.$row, '0.18');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA'.$row, '=Y'.$row.'+(Y'.$row.'*Z'.$row.')');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AB'.$row, '=Y'.$row.'*'.($plan->getCommission()/100));
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC'.$row, '=AB'.$row.'*1.18');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD'.$row, '=AA'.$row.'+AC'.$row);
             $row ++;
         }
 
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AC'.$row, 'Общий бюджет:');
-        $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD'.$row, ($y+($y*1.18))+($y*0.05*1.18));
+            $phpExcelObject->getActiveSheet()->mergeCells('B'.$row.':AC'.$row);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, 'Общий бюджет:');
+            $phpExcelObject->getActiveSheet()->getStyle('B'.$row)->applyFromArray($rightstyle);
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AD'.$row, '=SUM(AD5:AD'.($row-1).')');
+            $phpExcelObject->getActiveSheet()->getStyle('AD'.$row)->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_NUMBER_00);
+            $phpExcelObject->getActiveSheet()->getStyle('A'.$row.':AD'.$row)->getFont()->setBold(true);
+
 
 
         $phpExcelObject->getActiveSheet()->setTitle('Simple');
@@ -355,5 +419,22 @@ class MediaplanController extends Controller
         $response->headers->set('Content-Disposition', $dispositionHeader);
 
         return $response;
+    }
+
+    public function convertMonthToCell($month){
+        switch ($month){
+            case 1:  return 'I'; break;
+            case 2:  return 'J'; break;
+            case 3:  return 'K'; break;
+            case 4:  return 'L'; break;
+            case 5:  return 'M'; break;
+            case 6:  return 'N'; break;
+            case 7:  return 'O'; break;
+            case 8:  return 'P'; break;
+            case 9:  return 'Q'; break;
+            case 10: return 'R'; break;
+            case 11: return 'S'; break;
+            case 12: return 'T'; break;
+        }
     }
 }

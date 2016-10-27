@@ -18,16 +18,20 @@
         <tr>
             <th>ID</th>
             <th>Название компании</th>
-            <th>Контакт</th>
             <th>Контактное лицо</th>
+            <th>Должность</th>
+            <th>Телефон</th>
+            <th>E-mail</th>
             <th></th>
         </tr>
         {% for item in pagination %}
             <tr>
                 <td>{{ item.id }}</td>
                 <td>{{ item.title }}</td>
-                <td>{{ item.contact }}</td>
                 <td>{{ item.contactPerson }}</td>
+                <td>{{ item.contactPost }}</td>
+                <td>{{ item.contactPhone }}</td>
+                <td>{{ item.contactEmail }}</td>
                 <td class="setting">
                     <a href="{{ path('company_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
                     <button class="btn-xs btn-danger" data-href="{{ path('company_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>

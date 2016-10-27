@@ -16,9 +16,11 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('title', null, ['label' => 'Название'])
+            ->add('contactPerson', null, ['label' => 'ФИО'])
+            ->add('contactPost', null, ['label' => 'Должность'])
+            ->add('contactEmail', null, ['label' => 'E-mail'])
+            ->add('contactPhone', null, ['label' => 'Телефон'])
             ->add('requisites', null, ['label' => 'Реквизиты'])
-            ->add('contact', null, ['label' => 'Контакт'])
-            ->add('contactPerson', null, ['label' => 'Контактное лицо'])
         ;
     }
     

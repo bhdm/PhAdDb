@@ -36,7 +36,7 @@ class MediaplanType extends AbstractType
             ->add('sale', null, ['label' => 'Скидка (в %)'])
             ->add('commission', null, ['label' => 'Агентская коммисия (в %)'])
 //            ->add('interalBudget', null, ['label' => 'Внутренний бюджет'])
-            ->add('interalSale', null, ['label' => 'Внутренняя скидка (в %)'])
+//            ->add('interalSale', null, ['label' => 'Внутренняя скидка (в %)'])
         ;
     }
     

@@ -41,16 +41,31 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="contact", type="string", nullable=true)
+     * @ORM\Column(name="contact_phone", type="string", nullable=true)
      */
-    private $contact;
+    private $contactPhone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contactPerson", type="string", nullable=true)
+     * @ORM\Column(name="contact_email", type="string", nullable=true)
+     */
+    private $contactEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact_person", type="string", nullable=true)
      */
     private $contactPerson;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact_post", type="string", nullable=true)
+     */
+    private $contactPost;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Company", mappedBy="company")
@@ -61,6 +76,8 @@ class Company
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Mediaplan", mappedBy="company")
      */
     private $mediaplans;
+
+
 
 
     public function __toString()
@@ -186,6 +203,54 @@ class Company
     public function setContactPerson($contactPerson)
     {
         $this->contactPerson = $contactPerson;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactPhone()
+    {
+        return $this->contactPhone;
+    }
+
+    /**
+     * @param string $contactPhone
+     */
+    public function setContactPhone($contactPhone)
+    {
+        $this->contactPhone = $contactPhone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactEmail()
+    {
+        return $this->contactEmail;
+    }
+
+    /**
+     * @param string $contactEmail
+     */
+    public function setContactEmail($contactEmail)
+    {
+        $this->contactEmail = $contactEmail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContactPost()
+    {
+        return $this->contactPost;
+    }
+
+    /**
+     * @param mixed $contactPost
+     */
+    public function setContactPost($contactPost)
+    {
+        $this->contactPost = $contactPost;
     }
 
 
