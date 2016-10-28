@@ -62,7 +62,7 @@ class MediaplanController extends Controller
                 $item->setUser($this->getUser());
                 $em->persist($item);
                 $em->flush();
-                $this->get('app.email')->send($this->getUser(),'создал', 'медиаплан '.$item->getTitle());
+                $this->get('app.email')->send($this->getUser(),'создал', 'медиаплан '.$item);
                 return $this->redirectToRoute('mediaplan_list');
             }
         }
