@@ -15,12 +15,12 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', null, ['label' => 'Название'])
+            ->add('title', null, ['label' => 'Название компании'])
+            ->add('requisites', null, ['label' => 'Реквизиты'])
             ->add('contactPerson', null, ['label' => 'ФИО'])
             ->add('contactPost', null, ['label' => 'Должность'])
             ->add('contactEmail', null, ['label' => 'E-mail'])
             ->add('contactPhone', null, ['label' => 'Телефон'])
-            ->add('requisites', null, ['label' => 'Реквизиты'])
         ;
     }
     

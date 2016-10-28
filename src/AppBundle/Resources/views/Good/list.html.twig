@@ -28,8 +28,8 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.price }}</td>
                 <td class="setting">
-                    <a href="{{ path('format_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
-                    <button class="btn-xs btn-danger remove" data-toggle="modal" data-target="#confirm-delete" data-href="{{ path('format_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
+                    <a href="{{ path('good_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
+                    <button class="btn-xs btn-danger remove" data-toggle="modal" data-target="#confirm-delete" data-href="{{ path('good_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
                 </td>
             </tr>
         {% endfor %}
