@@ -66,7 +66,7 @@ class MediaplanController extends Controller
                 return $this->redirect($this->generateUrl('mediaplan_list'));
             }
         }
-        return $this->render('@App/Mediaplan/form.html.twig',
+        return $this->renderView('@App/Mediaplan/form.html.twig',
             array(
                 'form' => $form->createView()
             )) ;
