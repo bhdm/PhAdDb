@@ -23,7 +23,7 @@ class NosologyController extends Controller
      */
     public function listAction(Request $request)
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Nosology')->findAll();
+        $items = $this->getDoctrine()->getRepository('AppBundle:Nosology')->findBy([],['title' => 'ASC']);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
