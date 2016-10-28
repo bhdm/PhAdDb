@@ -23,7 +23,9 @@ class UserController extends Controller
      */
     public function listAction(Request $request)
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
+        $role = $request->query->get('role');
+        $text = $request->query->get('s-text');
+        $items = $this->getDoctrine()->getRepository('AppBundle:User')->filter($role, $text);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
@@ -52,10 +54,10 @@ class UserController extends Controller
                 $password = $this->get('security.password_encoder')->encodePassword($item, $item->getPassword());
                 $item->setPassword($password);
 
-                if ($request->request->get('app_user_registration')['admin'] == 1){
-                    $item->setRoles(array(['ROLE_USER','ROLE_ADMIN']));
+                if ($request->request->get('admin') == 1){
+                    $item->setRoles(array('ROLE_USER','ROLE_ADMIN'));
                 }else{
-                    $item->setRoles(array(['ROLE_USER']));
+                    $item->setRoles(array('ROLE_USER'));
                 }
 
                 $em->persist($item);
@@ -84,6 +86,11 @@ class UserController extends Controller
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
                 $item = $formData->getData();
+                if ($request->request->get('admin') == 1){
+                    $item->setRoles(['ROLE_USER','ROLE_ADMIN']);
+                }else{
+                    $item->setRoles(['ROLE_USER']);
+                }
                 $em->persist($item);
                 $em->flush();
                 return $this->redirect($this->generateUrl('user_list'));
