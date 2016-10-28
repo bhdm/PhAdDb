@@ -63,10 +63,10 @@ class MediaplanController extends Controller
                 $em->persist($item);
                 $em->flush();
                 $this->get('app.email')->send($this->getUser(),'создал', 'медиаплан '.$item->getTitle());
-                return $this->redirect($this->generateUrl('mediaplan_list'));
+                return $this->redirectToRoute('mediaplan_list');
             }
         }
-        return $this->renderView('@App/Mediaplan/form.html.twig',
+        return $this->render('@App/Mediaplan/form.html.twig',
             array(
                 'form' => $form->createView()
             )) ;
