@@ -45,14 +45,12 @@ class Mediaplan
     private $months;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Regex("/^[0-9]+$/")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Regex("/^[0-9]+$/")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $budget;
 
@@ -69,14 +67,12 @@ class Mediaplan
     private $commission;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Regex("/^[0-9]+$/")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $interalBudget;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Regex("/^[0-9]+$/")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $interalSale;
 
