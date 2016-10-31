@@ -67,6 +67,13 @@
     <script>
         $(document).ready(function () {
 
+            $('#mediaplan_show').click(function () {
+                $('form').attr('target', '_blank');
+            });
+            $('#mediaplan_submit').click(function () {
+                $('form').removeAttr('target');
+            });
+
             var $collectionHolder  = $('ul.goods');
 
             $collectionHolder.find('li').each(function() {
