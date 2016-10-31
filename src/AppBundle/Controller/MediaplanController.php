@@ -72,6 +72,11 @@ class MediaplanController extends Controller
                     $item->setUser($this->getUser());
                     $em->persist($item);
                     $em->flush();
+                    $lastM = $this->getDoctrine()->getRepository('AppBundle:Mediaplan')->findOneBy([],['id' => 'DESC']);
+                    foreach ( $item->getGoods() as $g ) {
+                        $g->setMediaplan($lastM);
+                    }
+                    $em->flush();
                     $this->get('app.email')->send($this->getUser(),'создал', 'медиаплан '.$item);
                     return $this->redirectToRoute('mediaplan_list');
                 }elseif ($form->get('show')->isClicked()){
@@ -118,6 +123,11 @@ class MediaplanController extends Controller
                 if ($form->get('submit')->isClicked()) {
                     $em->flush();
                     $em->flush($item);
+                    foreach ( $item->getGoods() as $g) {
+                        $g->setMediaplan($item);
+                        $em->flush($g);
+                    }
+                    $em->flush();
                     $em->refresh($item);
                     $this->get('app.email')->send($this->getUser(),'изменил', 'медиаплан '.$item);
                     return $this->redirect($this->generateUrl('mediaplan_list'));
