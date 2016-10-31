@@ -105,7 +105,7 @@ class MediaplanController extends Controller
                 $em->flush();
                 $em->flush($item);
                 $em->refresh($item);
-                $this->get('app.email')->send($this->getUser(),'изменил', 'медиаплан '.$item->getTitle());
+                $this->get('app.email')->send($this->getUser(),'изменил', 'медиаплан '.$item);
                 return $this->redirect($this->generateUrl('mediaplan_list'));
             }
         }

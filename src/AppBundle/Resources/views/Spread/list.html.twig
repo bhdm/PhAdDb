@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
-        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path("mediaplan_list") }}">Главная</a></li>
         <li class="active">Список геопозиций</li>
         <div style="float: right" class="btn-add">
             <a href="{{ path('spread_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>

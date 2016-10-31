@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
-        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path("mediaplan_list") }}">Главная</a></li>
         <li class="active">Список издательств</li>
         <div style="float: right" class="btn-add">
             <a href="{{ path('publishing_house_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
@@ -26,7 +26,7 @@
                 <td>{{ item.title }}</td>
                 <td></td>
                 <td class="setting">
-                    <a href="{{ path('publishing_house_remove', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
+                    <a href="{{ path('publishing_house_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>
                     <button class="btn-xs btn-danger remove" data-toggle="modal" data-target="#confirm-delete" data-href="{{ path('publishing_house_remove', {'id' : item.id} ) }}"><span class="glyphicon glyphicon-remove"></span> Удалить</button>
                 </td>
             </tr>

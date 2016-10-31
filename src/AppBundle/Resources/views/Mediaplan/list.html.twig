@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
-        <li><a href="#">Главная</a></li>
+        <li><a href="{{ path("mediaplan_list") }}">Главная</a></li>
         <li class="active">Список медиапланов</li>
         <div style="float: right" class="btn-add">
             <a href="{{ path('mediaplan_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
@@ -70,12 +70,12 @@
             <tr>
                 <td>{{ item.company }}</td>
                 <td>{{ item.contractNumber }}</td>
-                <td>{{ item.idn }}</td>
-                <td>{{ item.year }}</td>
+                {#<td>{{ item.idn }}</td>#}
+                <td class="text-center">{{ item.year }}</td>
                 <td>{{ item.magazine.periodicity }} <br />{{ item.magazine.circulation }}</td>
                 <td>{{ item.magazine.spread | join(', ') }}</td>
-                <td>{{ item.magazine.format }}</td>
-                <td>{{ item.goods | length }}</td>
+                <td class="text-center">{{ item.magazine.format }}</td>
+                <td class="text-center">{{ item.goods | length }}</td>
                 <td class="setting" style="width: 500px">
                     <a href="{{ path('mediaplan_print', {'id' : item.id} ) }}"><button class="btn-xs btn-success"><span class="glyphicon glyphicon-print"></span> Сохранить / Печать</button></a>
                     <a href="{{ path('mediaplan_edit', {'id' : item.id} ) }}"><button class="btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span> Просмотр / Редактировать</button></a>

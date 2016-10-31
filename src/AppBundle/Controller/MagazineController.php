@@ -58,6 +58,9 @@ class MagazineController extends Controller
                 $em->flush($item);
                 $em->refresh($item);
                 $spreads = $request->request->get('spread');
+                if ($spreads == null){
+                    $spreads = array();
+                }
                 foreach ($spreads as $s){
                     $spread = $this->getDoctrine()->getRepository('AppBundle:Spread')->findOneByTitle($s);
                     if ($spread == null){
@@ -96,6 +99,9 @@ class MagazineController extends Controller
             if ($formData->isValid()){
                 $item = $formData->getData();
                 $spreads = $request->request->get('spread');
+                if ($spreads == null){
+                    $spreads = array();
+                }
                 foreach ($item->getSpread() as $s){
                     $item->removeSpread($s);
                 }
