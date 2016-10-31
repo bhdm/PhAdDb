@@ -424,7 +424,8 @@ class MediaplanController extends Controller
 
 
         $dateNow = new \DateTime();
-        $filename = $plan->getCompany() . ' ' . $dateNow->format('d.m.Y');
+        $filename = $plan->getCompany()->getTitle() . ' ' . $dateNow->format('d.m.Y');
+        $filename = $this->slugify($filename);
         $phpExcelObject->getActiveSheet()->setTitle('Simple');
         // Set active sheet index to the first sheet, so Excel opens this as the first sheet
         $phpExcelObject->setActiveSheetIndex(0);
@@ -436,6 +437,7 @@ class MediaplanController extends Controller
         // adding headers
         $dispositionHeader = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            null,
             $filename.'.xls'
         );
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
@@ -461,5 +463,32 @@ class MediaplanController extends Controller
             case 11: return 'S'; break;
             case 12: return 'T'; break;
         }
+    }
+
+    public function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }
