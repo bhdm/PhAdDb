@@ -10,4 +10,37 @@ namespace AppBundle\Repository;
  */
 class MediaplanRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function filter($params){
+        $qb = $this->createQueryBuilder('m');
+        $qb->select('m');
+        $qb->leftJoin('m.company', 'company');
+        $qb->leftJoin('m.goods', 'goods');
+        $qb->leftJoin('goods.price', 'price');
+        $qb->leftJoin('price.magazine', 'magazine');
+        $qb->leftJoin('magazine.house', 'house');
+        $qb->leftJoin('price.format', 'format');
+
+        $qb->where('m.id != 0');
+        if ($params['company'] != null){
+            $qb->andWhere('company.id = :company');
+            $qb->setParameter(':company', $params['company']);
+        }
+        if ($params['house'] != null){
+            $qb->andWhere('house.id = :house');
+            $qb->setParameter(':house', $params['house']);
+        }
+        if ($params['magazine'] != null){
+            $qb->andWhere('magazine.id = :magazine');
+            $qb->setParameter(':magazine', $params['magazine']);
+        }
+        if ($params['format'] != null){
+            $qb->andWhere('format.id = :format');
+            $qb->setParameter(':format', $params['format']);
+        }
+
+        $qb->orderBy('m.id', 'ASC');
+        $qb->groupBy('m.id');
+
+        return $qb->getQuery()->getResult();
+    }
 }

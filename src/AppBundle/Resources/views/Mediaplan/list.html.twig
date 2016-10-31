@@ -21,7 +21,7 @@
                 <select class="" data-placeholder="Издательсво" name="house">
                     <option value="null">Все издательства</option>
                     {% for item in houses %}
-                        <option value="{{ item.id }}">{{ item }}</option>
+                        <option value="{{ item.id }}" {{ params['house'] == item.id ? 'selected' : '' }}>{{ item }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -29,7 +29,7 @@
                 <select class="" data-placeholder="Издание" name="magazine">
                     <option value="null">Все издания</option>
                     {% for item in magazines %}
-                        <option value="{{ item.id }}">{{ item }}</option>
+                        <option value="{{ item.id }}" {{ params['magazine'] == item.id ? 'selected' : '' }}>{{ item }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -37,7 +37,7 @@
                 <select class="" data-placeholder="Компания" name="company">
                     <option value="null">Все компании</option>
                     {% for item in companies %}
-                        <option value="{{ item.id }}">{{ item }}</option>
+                        <option value="{{ item.id }}" {{ params['company'] == item.id ? 'selected' : '' }}>{{ item }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -45,7 +45,7 @@
                 <select class="" data-placeholder="Формат" name="format">
                     <option value="null">Все форматы</option>
                     {% for item in formats %}
-                        <option value="{{ item.id }}">{{ item }}</option>
+                        <option value="{{ item.id }}" {{ params['format'] == item.id ? 'selected' : '' }}>{{ item }}</option>
                     {% endfor %}
                 </select>
             </div>

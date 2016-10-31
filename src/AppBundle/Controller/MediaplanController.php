@@ -25,12 +25,19 @@ class MediaplanController extends Controller
      */
     public function listAction(Request $request)
     {
-        $items = $this->getDoctrine()->getRepository('AppBundle:Mediaplan')->findAll();
+        $params = array(
+            'house' => $request->query->get('house'),
+            'magazine' => $request->query->get('magazine'),
+            'company' => $request->query->get('company'),
+            'format' => $request->query->get('format'),
+        );
+        $items = $this->getDoctrine()->getRepository('AppBundle:Mediaplan')->filter($params);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $items,
             $request->query->get('page', 1),
             20
+
         );
         $houses = $this->getDoctrine()->getRepository('AppBundle:PublishingHouse')->findBy([],['title' => 'ASC']);
         $magazines = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findBy([],['title' => 'ASC']);
@@ -42,6 +49,7 @@ class MediaplanController extends Controller
             'houses'=> $houses,
             'companies'=> $companies,
             'formats'=> $formats,
+            'params'=> $params,
         );
     }
 
