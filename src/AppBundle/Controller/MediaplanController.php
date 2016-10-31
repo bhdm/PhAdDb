@@ -62,16 +62,22 @@ class MediaplanController extends Controller
         $item = new Mediaplan();
         $form = $this->createForm(MediaplanType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+        $form->add('show', SubmitType::class, ['label' => 'Просмотр', 'attr' => ['class' => 'btn-success', 'target' => '_blank']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() === 'POST'){
             if ($formData->isValid()){
-                $item = $formData->getData();
-                $item->setUser($this->getUser());
-                $em->persist($item);
-                $em->flush();
-                $this->get('app.email')->send($this->getUser(),'создал', 'медиаплан '.$item);
-                return $this->redirectToRoute('mediaplan_list');
+                if ($form->get('submit')->isClicked()) {
+                    $item = $formData->getData();
+                    $item->setUser($this->getUser());
+                    $em->persist($item);
+                    $em->flush();
+                    $this->get('app.email')->send($this->getUser(),'создал', 'медиаплан '.$item);
+                    return $this->redirectToRoute('mediaplan_list');
+                }elseif ($form->get('show')->isClicked()){
+                    $item = $formData->getData();
+                    return $this->render('@App/Mediaplan/show.html.twig',['item' => $item]);
+                }
             }
         }
         return $this->render('@App/Mediaplan/form.html.twig',
@@ -95,6 +101,7 @@ class MediaplanController extends Controller
 
         $form = $this->createForm(MediaplanType::class, $item);
         $form->add('submit', SubmitType::class, ['label' => 'Сохранить', 'attr' => ['class' => 'btn-primary']]);
+        $form->add('show', SubmitType::class, ['label' => 'Просмотр', 'attr' => ['class' => 'btn-success', 'target' => '_blank']]);
         $formData = $form->handleRequest($request);
 
         if ($request->getMethod() === 'POST'){
@@ -108,13 +115,15 @@ class MediaplanController extends Controller
                         $em->remove($good);
                     }
                 }
-
-
-                $em->flush();
-                $em->flush($item);
-                $em->refresh($item);
-                $this->get('app.email')->send($this->getUser(),'изменил', 'медиаплан '.$item);
-                return $this->redirect($this->generateUrl('mediaplan_list'));
+                if ($form->get('submit')->isClicked()) {
+                    $em->flush();
+                    $em->flush($item);
+                    $em->refresh($item);
+                    $this->get('app.email')->send($this->getUser(),'изменил', 'медиаплан '.$item);
+                    return $this->redirect($this->generateUrl('mediaplan_list'));
+                }else{
+                    return $this->render('@App/Mediaplan/show.html.twig',['item' => $item]);
+                }
             }
         }
         return $this->render('@App/Mediaplan/form.html.twig',
@@ -415,7 +424,7 @@ class MediaplanController extends Controller
 
 
         $dateNow = new \DateTime();
-        $filename = $plan->getCompany().$dateNow->format('d.m.Y');
+        $filename = $plan->getCompany() . ' ' . $dateNow->format('d.m.Y');
         $phpExcelObject->getActiveSheet()->setTitle('Simple');
         // Set active sheet index to the first sheet, so Excel opens this as the first sheet
         $phpExcelObject->setActiveSheetIndex(0);

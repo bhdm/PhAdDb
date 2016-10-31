@@ -1,0 +1,26 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block title %}Список медиапланов{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path("mediaplan_list") }}">Главная</a></li>
+        <li class="active">Список медиапланов</li>
+        <div style="float: right" class="btn-add">
+            <a href="{{ path('mediaplan_add') }}" class="btn btn-primary">Добавить</a> <span class="divider"></span>
+        </div>
+    </ol>
+
+{% endblock %}
+
+{% block content %}
+    <label>Медиаплан {{ item.contractNumber }}</label>
+    <table class="table table-hover table-custom">
+        <tr>
+            <th>Издательство</th>
+            <th>Издание</th>
+
+        </tr>
+    </table>
+
+{% endblock %}

@@ -28,7 +28,7 @@ class MediaplanType extends AbstractType
                 'allow_add'    => true,
                 'allow_delete'    => true,
                 'auto_initialize' => true,
-                'label' => 'Рекламные модули'
+                'label' => ' '
             ])
 
 //            ->add('price', null, ['label' => 'Стоимость (без НДС)'])
