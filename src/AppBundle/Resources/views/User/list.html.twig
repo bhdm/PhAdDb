@@ -19,12 +19,12 @@
             <div class="col-xs-12 col-sm-6 col-md-3 filter">
                 <select class="" data-placeholder="Права" name="role">
                     <option value="null">Все</option>
-                    <option value="ROLE_ADMIN">Администратор</option>
-                    <option value="ROLE_USER">Пользователь</option>
+                    <option value="ROLE_ADMIN" {{ role == 'ROLE_ADMIN' ? 'selected' : '' }}>Администратор</option>
+                    <option value="ROLE_USER" {{ role == 'ROLE_USER' ? 'selected' : '' }}>Пользователь</option>
                 </select>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 filter">
-                <input type="text" class="form-control" name="s-text" style="height: 26px;" placeholder="Введите строку поиска">
+                <input type="text" class="form-control" name="s-text" style="height: 26px;" placeholder="Введите строку поиска" value="{{ text }}">
             </div>
             <div class="col-xs-12 col-sm-6 col-md-1">
                 <button class="btn-xs btn-primary" type="submit">Найти</button>

@@ -32,7 +32,11 @@ class UserController extends Controller
             $request->query->get('page', 1),
             20
         );
-        return array('pagination' => $pagination);
+        return array(
+            'pagination' => $pagination,
+            'role' => $role,
+            'text' => $text
+            );
     }
 
     /**
@@ -53,7 +57,7 @@ class UserController extends Controller
 
                 $password = $this->get('security.password_encoder')->encodePassword($item, $item->getPassword());
                 $item->setPassword($password);
-
+                $item->setEnabled(true);
                 if ($request->request->get('admin') == 1){
                     $item->setRoles(array('ROLE_USER','ROLE_ADMIN'));
                 }else{

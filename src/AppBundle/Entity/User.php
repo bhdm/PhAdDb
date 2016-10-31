@@ -198,6 +198,9 @@ class User extends BaseUser
         $this->mediaplans = $mediaplans;
     }
 
-
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
 
 }
