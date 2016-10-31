@@ -17,17 +17,18 @@
     <label>Медиаплан {{ item.contractNumber }}</label>
     <table class="table table-hover table-custom">
         <tr>
+            <th>Месяц</th>
             <th>Издательство</th>
             <th>Издание</th>
             <th>Тираж</th>
             <th>Периодичность</th>
             <th>Распространение</th>
             <th>Формат</th>
-            <th>Стоимость (с НДС)</th>
-            <th>Бюджет</th>
+            <th>Стоимость</th>
         </tr>
         {% for good in item.goods %}
             <tr>
+                <td>{{ good.monthStr }}</td>
                 <td>{{ good.price.magazine.house }}</td>
                 <td>{{ good.price.magazine }}</td>
                 <td>{{ good.price.magazine.circulation }}</td>
