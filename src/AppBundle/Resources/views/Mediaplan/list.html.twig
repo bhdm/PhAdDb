@@ -73,9 +73,9 @@
             <th>Компания</th>
             <th>Номер договора</th>
             <th>Год</th>
-            <th>Периодичность<br />Тираж</th>
-            <th>Распростр.</th>
-            <th>Формат</th>
+            {#<th>Периодичность<br />Тираж</th>#}
+            {#<th>Распростр.</th>#}
+            {#<th>Формат</th>#}
             <th>Кол-во публикаций</th>
             <th></th>
         </tr>
@@ -85,9 +85,9 @@
                 <td>{{ item.contractNumber }}</td>
                 {#<td>{{ item.idn }}</td>#}
                 <td class="text-center">{{ item.year }}</td>
-                <td>{{ item.magazine.periodicity }} <br />{{ item.magazine.circulation }}</td>
-                <td>{{ item.magazine.spread | join(', ') }}</td>
-                <td class="text-center">{{ item.magazine.format }}</td>
+                {#<td>{{ item.magazine.periodicity }} <br />{{ item.magazine.circulation }}</td>#}
+                {#<td>{{ item.magazine.spread | join(', ') }}</td>#}
+                {#<td class="text-center">{{ item.magazine.format }}</td>#}
                 <td class="text-center">{{ item.goods | length }}</td>
                 <td class="setting" style="width: 500px">
                     <a href="{{ path('mediaplan_print', {'id' : item.id} ) }}"><button class="btn-xs btn-success"><span class="glyphicon glyphicon-print"></span> Сохранить / Печать</button></a>
