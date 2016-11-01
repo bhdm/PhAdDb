@@ -21,19 +21,19 @@ class MediaplanRepository extends \Doctrine\ORM\EntityRepository
         $qb->leftJoin('price.format', 'format');
 
         $qb->where('m.id != 0');
-        if ($params['company'] != null){
+        if ($params['company'] != null && $params['company'] != 'null' ){
             $qb->andWhere('company.id = :company');
             $qb->setParameter(':company', $params['company']);
         }
-        if ($params['house'] != null){
+        if ($params['house'] != null && $params['house'] != 'null'){
             $qb->andWhere('house.id = :house');
             $qb->setParameter(':house', $params['house']);
         }
-        if ($params['magazine'] != null){
+        if ($params['magazine'] != null && $params['magazine'] != 'null'){
             $qb->andWhere('magazine.id = :magazine');
             $qb->setParameter(':magazine', $params['magazine']);
         }
-        if ($params['format'] != null){
+        if ($params['format'] != null && $params['format'] != 'null'){
             $qb->andWhere('format.id = :format');
             $qb->setParameter(':format', $params['format']);
         }
