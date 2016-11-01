@@ -19,7 +19,7 @@ class MediaplanType extends AbstractType
             ->add('company', null, ['label' => 'Компания', 'attr' => ['data-placeholder' => 'Выберите компанию']])
             ->add('contractNumber', null, ['label' => '№ договора'])
 
-            ->add('magazine', null, ['label' => 'Издание', 'attr' => ['data-placeholder' => 'Выберите издание']])
+//            ->add('magazine', null, ['label' => 'Издание', 'attr' => ['data-placeholder' => 'Выберите издание']])
             ->add('idn', null, ['label' => 'Ид'])
             ->add('year', null, ['label' => 'Год'])
 
