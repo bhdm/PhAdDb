@@ -22,6 +22,11 @@ class MediaplanRepository extends \Doctrine\ORM\EntityRepository
 
         $qb->where('m.id != 0');
 
+        if ($params['year'] != null && $params['year'] != 'null' ){
+            $qb->andWhere('m.year = :year');
+            $qb->setParameter(':year', $params['year']);
+        }
+
         if ($params['company'] != null && $params['company'] != 'null' ){
             $qb->andWhere('company.id = :company');
             $qb->setParameter(':company', $params['company']);
