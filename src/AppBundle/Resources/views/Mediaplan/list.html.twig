@@ -17,6 +17,19 @@
     <label>Фильтр</label>
     <form method="GET">
         <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-2 filter">
+                <select class="" data-placeholder="Год" name="year">
+                    <option value="null">Год</option>
+                    <option value="null">Все года</option>
+                    <option value="2015" {{ params['year'] == 2015 ? 'selected' : '' }}>2015</option>
+                    <option value="2016" {{ params['year'] == 2016 ? 'selected' : '' }}>2016</option>
+                    <option value="2017" {{ params['year'] == 2017 ? 'selected' : '' }}>2017</option>
+                    <option value="2018" {{ params['year'] == 2018 ? 'selected' : '' }}>2018</option>
+                    <option value="2019" {{ params['year'] == 2019 ? 'selected' : '' }}>2019</option>
+                    <option value="2020" {{ params['year'] == 2020 ? 'selected' : '' }}>2020</option>
+
+                </select>
+            </div>
             <div class="col-xs-12 col-sm-6 col-md-3 filter">
                 <select class="" data-placeholder="Издательсво" name="house">
                     <option value="null">Все издательства</option>
@@ -25,7 +38,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+            <div class="col-xs-12 col-sm-6 col-md-2 filter">
                 <select class="" data-placeholder="Издание" name="magazine">
                     <option value="null">Все издания</option>
                     {% for item in magazines %}
@@ -33,7 +46,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 filter">
+            <div class="col-xs-12 col-sm-6 col-md-2 filter">
                 <select class="" data-placeholder="Компания" name="company">
                     <option value="null">Все компании</option>
                     {% for item in companies %}

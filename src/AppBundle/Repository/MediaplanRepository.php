@@ -21,6 +21,7 @@ class MediaplanRepository extends \Doctrine\ORM\EntityRepository
         $qb->leftJoin('price.format', 'format');
 
         $qb->where('m.id != 0');
+
         if ($params['company'] != null && $params['company'] != 'null' ){
             $qb->andWhere('company.id = :company');
             $qb->setParameter(':company', $params['company']);

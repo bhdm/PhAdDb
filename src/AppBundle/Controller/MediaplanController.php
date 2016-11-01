@@ -28,6 +28,7 @@ class MediaplanController extends Controller
         $params = array(
             'house' => $request->query->get('house'),
             'magazine' => $request->query->get('magazine'),
+            'year' => $request->query->get('year'),
             'company' => $request->query->get('company'),
             'format' => $request->query->get('format'),
         );
