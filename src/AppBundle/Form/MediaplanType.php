@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,13 +16,18 @@ class MediaplanType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $currentYear = (new \DateTime())->format('Y');
+        $years = [];
+        for ($i = $currentYear - 1 ; $i <= $currentYear + 5 ; $i ++){
+            $years[$i] = $i;
+        }
         $builder
-            ->add('company', null, ['label' => 'Компания', 'attr' => ['data-placeholder' => 'Выберите компанию']])
+            ->add('company', null, ['label' => 'Компания', 'attr' => ['data-placeholder' => 'Выберите компанию'], 'required' => true])
             ->add('contractNumber', null, ['label' => '№ договора'])
 
 //            ->add('magazine', null, ['label' => 'Издание', 'attr' => ['data-placeholder' => 'Выберите издание']])
             ->add('idn', null, ['label' => 'Ид'])
-            ->add('year', null, ['label' => 'Год'])
+            ->add('year', ChoiceType::class, ['label' => 'Год', 'choices' => $years, 'required' => true])
 
             ->add('goods', CollectionType::class, [
                 'entry_type' => GoodType::class,

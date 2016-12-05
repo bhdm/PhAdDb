@@ -26,9 +26,14 @@ class PriceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $currentYear = (new \DateTime())->format('Y');
+        $years = [];
+        for ($i = $currentYear - 1 ; $i <= $currentYear + 5 ; $i ++){
+            $years[$i] = $i;
+        }
         $builder
             ->add('magazine', null, ['label' => 'Журнал', 'required' => true])
-            ->add('year', null, ['label' => 'Год'])
+            ->add('year', ChoiceType::class, ['label' => 'Год', 'choices' => $years])
             ->add('price', null, ['label' => 'Стоимость без НДС'])
             ->add('nds', CheckboxType::class, ['label' => 'Работает с НДС', 'required' => false])
             ->add('format', TextType::class, ['label' => 'Формат', 'attr' => ['class' => 'format']])
