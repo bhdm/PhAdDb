@@ -26,6 +26,7 @@ class MagazineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('idn', null, ['label' => 'ИД', 'attr'=> ['required' => 'true']])
             ->add('house', null, ['label' => 'Издательство', 'attr'=> ['data-placeholder' => 'Выберите издательский дом']])
             ->add('format', TextType::class, ['label' => 'Формат', 'attr' => ['class' => 'format']])
             ->add('title', null, ['label' => 'Название'])

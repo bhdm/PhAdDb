@@ -26,7 +26,7 @@ class MediaplanType extends AbstractType
             ->add('contractNumber', null, ['label' => '№ договора'])
 
 //            ->add('magazine', null, ['label' => 'Издание', 'attr' => ['data-placeholder' => 'Выберите издание']])
-            ->add('idn', null, ['label' => 'Ид'])
+//            ->add('idn', null, ['label' => 'Ид'])
             ->add('year', ChoiceType::class, ['label' => 'Год', 'choices' => $years, 'required' => true])
 
             ->add('goods', CollectionType::class, [
@@ -39,7 +39,7 @@ class MediaplanType extends AbstractType
 
 //            ->add('price', null, ['label' => 'Стоимость (без НДС)'])
 //            ->add('budget', null, ['label' => 'Бюджет'])
-            ->add('sale', null, ['label' => 'Скидка (в %)'])
+//            ->add('sale', null, ['label' => 'Скидка (в %)'])
             ->add('commission', null, ['label' => 'Агентская коммисия (в %)'])
 //            ->add('interalBudget', null, ['label' => 'Внутренний бюджет'])
 //            ->add('interalSale', null, ['label' => 'Внутренняя скидка (в %)'])

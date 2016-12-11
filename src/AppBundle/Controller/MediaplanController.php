@@ -368,7 +368,7 @@ class MediaplanController extends Controller
             $magazine = $good->getPrice()->getMagazine();
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I3', $plan->getYear());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$row, $magazine->getHouse());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, '');
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, $magazine->getIdn());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C'.$row, $magazine->getCirculation());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D'.$row, $magazine->getPeriodicity());
             if (is_array($magazine->getSpread())){
@@ -415,7 +415,7 @@ class MediaplanController extends Controller
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('U'.$row, $modulesCount);
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('V'.$row, '='.$price.'/1.18');
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('W'.$row, '=U'.$row.'*V'.$row);
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X'.$row, ($plan->getSale()/100));
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('X'.$row, ($good->getSale()/100));
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Y'.$row, '=W'.$row.'*(1-X'.$row.')');
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('Z'.$row, '0.18');
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('AA'.$row, '=Y'.$row.'+(Y'.$row.'*Z'.$row.')');

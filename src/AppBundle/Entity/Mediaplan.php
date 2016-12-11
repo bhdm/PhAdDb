@@ -55,7 +55,7 @@ class Mediaplan
     private $budget;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Regex("/^[0-9]+$/")
      */
     private $sale;

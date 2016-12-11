@@ -66,8 +66,15 @@ class Good
      */
     private $month;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]+$/")
+     */
+    private $sale;
+
     public function __construct()
     {
+        $this->sale = 0;
         $this->designs = new ArrayCollection();
         $this->publications = new ArrayCollection();
     }
@@ -222,6 +229,22 @@ class Good
             case 11: return 'Ноябрь'; break;
             case 12: return 'Декабрь'; break;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSale()
+    {
+        return $this->sale;
+    }
+
+    /**
+     * @param mixed $sale
+     */
+    public function setSale($sale)
+    {
+        $this->sale = $sale;
     }
 
 }

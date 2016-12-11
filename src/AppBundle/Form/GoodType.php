@@ -33,6 +33,7 @@ class GoodType extends AbstractType
             ])
 //            ->add('company', null, ['label' => 'Организация', 'attr'=> ['data-placeholder' => 'Выберите организацию']])
             ->add('price', null, ['label' => 'Прайс-лист', 'attr'=> ['data-placeholder' => 'Выберите позицию из прайс-иста']])
+            ->add('sale', null, ['label' => 'Скидка (%)', 'attr'=> ['data-placeholder' => '']])
         ;
     }
     

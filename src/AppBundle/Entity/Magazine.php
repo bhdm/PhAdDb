@@ -25,6 +25,11 @@ class Magazine
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $idn;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -434,6 +439,21 @@ class Magazine
         $this->mediaplans = $mediaplans;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIdn()
+    {
+        return $this->idn;
+    }
+
+    /**
+     * @param mixed $idn
+     */
+    public function setIdn($idn)
+    {
+        $this->idn = $idn;
+    }
 
 }
 
