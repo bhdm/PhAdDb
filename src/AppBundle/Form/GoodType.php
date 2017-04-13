@@ -31,8 +31,8 @@ class GoodType extends AbstractType
                 'Ноябрь' => 11,
                 'Декабрь' => 12)
             ])
-//            ->add('company', null, ['label' => 'Организация', 'attr'=> ['data-placeholder' => 'Выберите организацию']])
-            ->add('price', null, ['label' => 'Прайс-лист', 'attr'=> ['data-placeholder' => 'Выберите позицию из прайс-иста']])
+            ->add('number', null, ['label' => 'Номер издания', 'attr'=> ['placeholder' => 'Номер издания (если есть)']])
+            ->add('price', null, ['label' => 'Прайс-лист', 'attr'=> ['placeholder' => 'Выберите позицию из прайс-иста']])
             ->add('sale', null, ['label' => 'Скидка (%)', 'attr'=> ['data-placeholder' => '']])
         ;
     }

@@ -455,5 +455,15 @@ class Magazine
         $this->idn = $idn;
     }
 
+    public function getSpreadString(){
+        $txt = '';
+        foreach ($this->getSpread() as $spread){
+            $txt .= $spread->getTitle();
+            if ($spread != $this->getSpread()->last()){
+                $txt .= ', ';
+            }
+        }
+        return $txt;
+    }
 }
 

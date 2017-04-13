@@ -369,19 +369,19 @@ class MediaplanController extends Controller
         foreach ($mediaplanGoods as $good){
             $magazine = $good->getPrice()->getMagazine();
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I3', $plan->getYear());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$row, $magazine->getHouse());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$row, $magazine->getHouse()."\r".$magazine->getMainEditor());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('B'.$row, $magazine->getIdn());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('C'.$row, $magazine->getCirculation());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('D'.$row, $magazine->getPeriodicity());
-            if (is_array($magazine->getSpread())){
-                $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E'.$row, implode(', ', $magazine->getSpread()));
+            if (count($magazine->getSpread()) > 0){
+                $phpExcelObject->setActiveSheetIndex(0)->setCellValue('E'.$row, $magazine->getSpreadString());
             }
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('F'.$row, $magazine->getFormat());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('G'.$row, ($magazine->getBak() == true? 'Да' : 'Нет'));
 
 //          Получаем в0се модули на данный месяц на данный журнал
             $modules = $this->getDoctrine()->getRepository('AppBundle:Good')->findByMonth($id, $good->getPrice());
-            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H'.$row, $good->getImpactFactor());
+            $phpExcelObject->setActiveSheetIndex(0)->setCellValue('H'.$row, $magazine->getImpactFactor());
             $phpExcelObject->setActiveSheetIndex(0)->setCellValue('I'.$row, $good->getPrice()->getFormat());
             $modulesCount = 0;
             foreach ($modules as $key => $months){

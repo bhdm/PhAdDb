@@ -67,6 +67,11 @@ class Good
     private $month;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $number;
+
+    /**
      * @ORM\Column(type="integer")
      * @Assert\Regex("/^[0-9]+$/")
      */
@@ -81,7 +86,8 @@ class Good
 
     public function __toString()
     {
-        return $this->getTitle();
+        $title =  $this->getTitle() . ($this->getNumber() ? ' ('.$this->getNumber().') ' : '' );
+        return $title;
     }
 
     /**
@@ -246,6 +252,23 @@ class Good
     {
         $this->sale = $sale;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param mixed $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
+
 
 }
 

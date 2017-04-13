@@ -26,8 +26,11 @@ class MagazineController extends Controller
      */
     public function listAction(Request $request)
     {
-        if ($request->query->get('search')){
-            $items = $this->getDoctrine()->getRepository('AppBundle:Magazine')->search($request->query->get('search'));
+        $nosologies = $this->getDoctrine()->getRepository('AppBundle:Nosology')->findBy([],['title' => 'ASC']);
+        $activeNosology = $request->query->get('nosology');
+
+        if ($request->query->get('search') || $activeNosology){
+            $items = $this->getDoctrine()->getRepository('AppBundle:Magazine')->search($request->query->get('search'), $activeNosology);
         }else{
             $items = $this->getDoctrine()->getRepository('AppBundle:Magazine')->findAll();
         }
@@ -37,7 +40,8 @@ class MagazineController extends Controller
             $request->query->get('page', 1),
             20
         );
-        return array('pagination' => $pagination);
+
+        return array('pagination' => $pagination, 'nosologies' => $nosologies, 'activeNosology'=> $activeNosology);
     }
 
     /**

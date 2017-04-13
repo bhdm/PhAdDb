@@ -22,7 +22,7 @@ class MagazineRepository extends \Doctrine\ORM\EntityRepository
      *  Импакт-фактор
      *  ФИО редактора
      */
-    public function search($query){
+    public function search($query, $activeNosology){
         $qb = $this->createQueryBuilder('s');
         $qb->select('s');
         $qb
@@ -37,8 +37,15 @@ class MagazineRepository extends \Doctrine\ORM\EntityRepository
             ->orWhere("format.title LIKE '%$query%'")
             ->orWhere("house.title LIKE '%$query%'")
             ->orWhere("spread.title LIKE '%$query%'")
-            ->orWhere("nosologies.title LIKE '%$query%'")
-            ->orderBy('s.id', 'ASC');
+            ->orWhere("nosologies.title LIKE '%$query%'");
+
+        if ($activeNosology){
+            $qb->andWhere('nosologies.id = :activeNosology')
+                ->setParameter(':activeNosology', $activeNosology);
+        }
+
+        $qb->orderBy('s.id', 'ASC');
+
         $result = $qb->getQuery()->getResult();
         return $result;
     }
